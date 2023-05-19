@@ -3,8 +3,10 @@ package com.supranet.doctormarketing
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var messageEditText: EditText
     private lateinit var sendButton: Button
     private lateinit var chatTextView: TextView
+    private lateinit var chatScrollView: ScrollView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         messageEditText = findViewById(R.id.messageEditText)
         sendButton = findViewById(R.id.sendButton)
+        chatScrollView = findViewById(R.id.scrollView)
         chatTextView = findViewById(R.id.chatTextView)
 
         chatTextView.textSize = 20f // Establecer tamaño de letra en 18 píxeles
@@ -81,6 +85,9 @@ class MainActivity : AppCompatActivity() {
                             val reply = choices.getJSONObject(0).getJSONObject("message").getString("content")
                             runOnUiThread {
                                 chatTextView.append("Doctor: $reply\n")
+                                chatScrollView.post {
+                                    chatScrollView.fullScroll(View.FOCUS_DOWN)
+                                }
                             }
                         }
                     } else {
