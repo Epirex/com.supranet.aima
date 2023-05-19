@@ -46,8 +46,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun sendMessageToChatGPT(message: String) {
         val client = OkHttpClient.Builder()
-            .callTimeout(120, TimeUnit.SECONDS)
+            .readTimeout(60000, TimeUnit.MILLISECONDS)
             .build()
+
 
         val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
         val json = JSONObject()
