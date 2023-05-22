@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         // Saludo inicial del bot
-        addMessageToChatView("Hola, soy el Doctor Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
+        addMessageToChatView("Hola! soy el Doctor Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
     }
 
     private fun sendMessageToChatGPT(message: String) {
@@ -120,8 +120,8 @@ class MainActivity : AppCompatActivity() {
         textView.setBackgroundResource(R.drawable.chat_bubble)
         textView.setPadding(16, 8, 16, 8)
         textView.layoutParams = layoutParams
-        textView.gravity = Gravity.CENTER_VERTICAL
-        textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+        //textView.gravity = Gravity.CENTER_VERTICAL
+        textView.setTextColor(ContextCompat.getColor(this, R.color.md_theme_light_onPrimary))
 
         // Alinear texto en el layout
         if (gravity == Gravity.END) {
