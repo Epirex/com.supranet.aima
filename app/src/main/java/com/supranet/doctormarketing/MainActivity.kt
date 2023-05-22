@@ -3,12 +3,15 @@ package com.supranet.doctormarketing
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var messageEditText: EditText
     private lateinit var sendButton: Button
-    private lateinit var chatTextView: TextView
+    private lateinit var chatLinearLayout: LinearLayout
     private lateinit var chatScrollView: ScrollView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +34,7 @@ class MainActivity : AppCompatActivity() {
         messageEditText = findViewById(R.id.messageEditText)
         sendButton = findViewById(R.id.sendButton)
         chatScrollView = findViewById(R.id.scrollView)
-        chatTextView = findViewById(R.id.chatTextView)
-
-        chatTextView.textSize = 20f // Establecer tamaño de letra en 18 píxeles
+        chatLinearLayout = findViewById(R.id.chatLinearLayout)
 
         sendButton.setOnClickListener {
             val message = messageEditText.text.toString()
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
                 messageEditText.text.clear()
             }
         }
+        // Saludo inicial del bot
+        addMessageToChatView("Hola, soy el Doctor Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
     }
 
     private fun sendMessageToChatGPT(message: String) {
@@ -49,30 +52,32 @@ class MainActivity : AppCompatActivity() {
             .readTimeout(60000, TimeUnit.MILLISECONDS)
             .build()
 
-
         val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
         val json = JSONObject()
             .put("model", "gpt-3.5-turbo")
-            .put("messages", JSONArray()
-                .put(JSONObject().put("role", "system").put("content", "You"))
-                .put(JSONObject().put("role", "user").put("content", message))
+            .put(
+                "messages", JSONArray()
+                    .put(JSONObject().put("role", "system").put("content", "You"))
+                    .put(JSONObject().put("role", "user").put("content", message))
             )
 
         val requestBody = json.toString().toRequestBody(jsonMediaType)
         val request = Request.Builder()
             .url("https://api.openai.com/v1/chat/completions")
-            .addHeader("Authorization", "Bearer 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")
+            .addHeader(
+                "Authorization",
+                "Bearer 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"
+            )
             .post(requestBody)
             .build()
 
-        // Agregar tu mensaje al TextView
+        // mensaje usuario
         runOnUiThread {
-            chatTextView.append("Usuario: $message\n")
+            addMessageToChatView("$message", Gravity.END)
         }
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                // Manejar la falla de la solicitud
                 e.printStackTrace()
             }
 
@@ -83,22 +88,66 @@ class MainActivity : AppCompatActivity() {
                     if (responseJson.has("choices")) {
                         val choices = responseJson.getJSONArray("choices")
                         if (choices.length() > 0) {
-                            val reply = choices.getJSONObject(0).getJSONObject("message").getString("content")
+                            val reply = choices.getJSONObject(0).getJSONObject("message")
+                                .getString("content")
+                            // mensaje bot
                             runOnUiThread {
-                                chatTextView.append("Doctor: $reply\n")
+                                addMessageToChatView("$reply", Gravity.START)
                                 chatScrollView.post {
                                     chatScrollView.fullScroll(View.FOCUS_DOWN)
                                 }
                             }
                         }
                     } else {
-                        // No se encontró la clave "choices" en la respuesta JSON
                         runOnUiThread {
-                            chatTextView.append("Error: Invalid response\n")
+                            addMessageToChatView("Error: Invalid response", Gravity.START)
                         }
                     }
                 }
             }
         })
+    }
+
+    private fun addMessageToChatView(message: String, gravity: Int) {
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        val textView = TextView(this)
+        textView.text = message
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f)
+        textView.setBackgroundResource(R.drawable.chat_bubble)
+        textView.setPadding(16, 8, 16, 8)
+        textView.layoutParams = layoutParams
+        textView.gravity = Gravity.CENTER_VERTICAL
+        textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+        // Alinear texto en el layout
+        if (gravity == Gravity.END) {
+            textView.setBackgroundResource(R.drawable.chat_bubble_user)
+            layoutParams.setMargins(150, 8, 16, 8)
+        } else {
+            textView.setBackgroundResource(R.drawable.chat_bubble_bot)
+            layoutParams.setMargins(16, 8, 150, 8)
+        }
+
+        val parentLayoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        val parentLinearLayout = LinearLayout(this)
+        parentLinearLayout.layoutParams = parentLayoutParams
+
+        if (gravity == Gravity.END) {
+            parentLinearLayout.gravity = Gravity.END
+        } else {
+            parentLinearLayout.gravity = Gravity.START
+        }
+
+        parentLinearLayout.addView(textView)
+
+        chatLinearLayout.addView(parentLinearLayout)
     }
 }
