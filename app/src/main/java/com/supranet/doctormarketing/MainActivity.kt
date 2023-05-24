@@ -5,11 +5,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.ScrollView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -41,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        // boton de enviar
         sendButton.setOnClickListener {
             val message = messageEditText.text.toString()
             if (message.isNotEmpty()) {
@@ -48,6 +45,12 @@ class MainActivity : AppCompatActivity() {
                 messageEditText.text.clear()
             }
         }
+        // boton de limpieza
+        val clearButton: ImageButton = findViewById(R.id.clearButton)
+        clearButton.setOnClickListener {
+            clearChat()
+        }
+
         // Saludo inicial del bot
         addMessageToChatView("Hola! soy AIMA. Doctora Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
     }
@@ -154,5 +157,10 @@ class MainActivity : AppCompatActivity() {
         parentLinearLayout.addView(textView)
 
         chatLinearLayout.addView(parentLinearLayout)
+    }
+
+    private fun clearChat() {
+        chatLinearLayout.removeAllViews()
+        addMessageToChatView("Hola! soy AIMA. Doctora Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
     }
 }

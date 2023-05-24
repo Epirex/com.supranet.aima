@@ -25,6 +25,15 @@
         android:layout_gravity="start"
         android:padding="8dp" />
 
+        <ImageButton
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/file_download_black_48dp" />
+
         </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
