@@ -5,6 +5,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -45,11 +46,15 @@ class MainActivity : AppCompatActivity() {
                 messageEditText.text.clear()
             }
         }
+
         // boton de limpieza
         val clearButton: ImageButton = findViewById(R.id.clearButton)
         clearButton.setOnClickListener {
             clearChat()
         }
+
+        // Mantener pantalla siempre encendida
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         // Saludo inicial del bot
         addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
