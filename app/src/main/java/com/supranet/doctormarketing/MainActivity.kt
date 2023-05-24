@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Saludo inicial del bot
-        addMessageToChatView("Hola! soy AIMA. Doctora Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
+        addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
     }
 
     private fun sendMessageToChatGPT(message: String) {
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             .put("model", "gpt-3.5-turbo")
             .put(
                 "messages", JSONArray()
-                    .put(JSONObject().put("role", "system").put("content", "You"))
+                    .put(JSONObject().put("role", "system").put("content", "Eres una inteligencia artificial desarrollada por supranet, te llamas AIMA, ahora eres una especialista en marketing con mas de 20 años de experiencia, tu objetivo sera responder solamente a consultas relacionadas al marketing y los negocios, responderas de forma amable y cortez, con cada respuesta realizaras preguntas sobre la tematica sobre la que estas charlando buscando ayudar al usuario a descubrir que otra informacion de relevancia debe considerar sobre el tema en cuestion. Si te preguntan sobre temas que no tengan que ver con los negocios o marketing, siempre daras por entendido que lo que se busca es una orientacion de marketing respecto al texto introducido y si hace falta mas informacion para dar una respuesta asertiva haras preguntas sobre el tema en cuestion solo si es absolutamente relevante."))
                     .put(JSONObject().put("role", "user").put("content", message))
             )
 
@@ -161,6 +161,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearChat() {
         chatLinearLayout.removeAllViews()
-        addMessageToChatView("Hola! soy AIMA. Doctora Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
+        addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
     }
 }

@@ -3,27 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingTop="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@color/md_theme_light_onPrimary"
+        android:background="@drawable/encabezado"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize" >
-
-    <ImageView
-        android:id="@+id/toolbarImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cardenas_imagen"
-        android:layout_gravity="start"
-        android:padding="8dp" />
 
         <ImageButton
             android:id="@+id/clearButton"
@@ -41,7 +29,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/messageEditText" >
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:layout_above="@+id/messageContainer" >
 
         <LinearLayout
             android:id="@+id/chatLinearLayout"
@@ -57,6 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
         android:background="@color/md_theme_light_onPrimary">
 
         <EditText
