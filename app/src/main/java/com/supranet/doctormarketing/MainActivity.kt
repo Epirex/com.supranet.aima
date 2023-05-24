@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         chatScrollView = findViewById(R.id.scrollView)
         chatLinearLayout = findViewById(R.id.chatLinearLayout)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         sendButton.setOnClickListener {
             val message = messageEditText.text.toString()
             if (message.isNotEmpty()) {
@@ -44,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         // Saludo inicial del bot
-        addMessageToChatView("Hola! soy el Doctor Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
+        addMessageToChatView("Hola! soy AIMA. Doctora Marketing, una inteligencia artificial desarrollada por Supranet. Preguntame lo que quieras :)", Gravity.START)
     }
 
     private fun sendMessageToChatGPT(message: String) {
@@ -66,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             .url("https://api.openai.com/v1/chat/completions")
             .addHeader(
                 "Authorization",
-                "Bearer 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"
+                "Bearer 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"
             )
             .post(requestBody)
             .build()
