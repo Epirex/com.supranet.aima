@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sendButton: Button
     private lateinit var chatLinearLayout: LinearLayout
     private lateinit var chatScrollView: ScrollView
+    private val messageHistory: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sendMessageToChatGPT(message: String) {
+        // Agregar el mensaje actual al historial
+        messageHistory.add(message)
+
+        // Mantener solo los últimos 10 mensajes en el historial
+        if (messageHistory.size > 10) {
+            messageHistory.removeAt(0)
+        }
+
+        val messagesArray = JSONArray().apply {
+            put(JSONObject().put("role", "system").put("content", "Eres una inteligencia artificial desarrollada por Supranet, te llamas AIMA, ahora eres una especialista en marketing con más de 20 años de experiencia. Tu objetivo será responder solamente a consultas relacionadas al marketing y los negocios. Responderás de forma amable y cortés, y con cada respuesta realizarás preguntas sobre la temática sobre la que estás charlando, buscando ayudar al usuario a descubrir otra información relevante que debe considerar sobre el tema en cuestión. Si te preguntan sobre temas que no tengan que ver con los negocios o el marketing, siempre darás por entendido que lo que se busca es una orientación de marketing respecto al texto introducido, y si hace falta más información para dar una respuesta asertiva, harás preguntas sobre el tema en cuestión solo si es absolutamente relevante."))
+            for (i in messageHistory.indices) {
+                put(JSONObject().put("role", "user").put("content", messageHistory[i]))
+            }
+        }
+
         val client = OkHttpClient.Builder()
             .readTimeout(60000, TimeUnit.MILLISECONDS)
             .build()
@@ -68,11 +84,7 @@ class MainActivity : AppCompatActivity() {
         val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
         val json = JSONObject()
             .put("model", "gpt-3.5-turbo")
-            .put(
-                "messages", JSONArray()
-                    .put(JSONObject().put("role", "system").put("content", "Eres una inteligencia artificial desarrollada por supranet, te llamas AIMA, ahora eres una especialista en marketing con mas de 20 años de experiencia, tu objetivo sera responder solamente a consultas relacionadas al marketing y los negocios, responderas de forma amable y cortez, con cada respuesta realizaras preguntas sobre la tematica sobre la que estas charlando buscando ayudar al usuario a descubrir que otra informacion de relevancia debe considerar sobre el tema en cuestion. Si te preguntan sobre temas que no tengan que ver con los negocios o marketing, siempre daras por entendido que lo que se busca es una orientacion de marketing respecto al texto introducido y si hace falta mas informacion para dar una respuesta asertiva haras preguntas sobre el tema en cuestion solo si es absolutamente relevante."))
-                    .put(JSONObject().put("role", "user").put("content", message))
-            )
+            .put("messages", messagesArray)
 
         val requestBody = json.toString().toRequestBody(jsonMediaType)
         val request = Request.Builder()
@@ -166,6 +178,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearChat() {
         chatLinearLayout.removeAllViews()
+        messageHistory.clear()
         addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
     }
 }
