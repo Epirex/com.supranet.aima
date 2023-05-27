@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var chatLinearLayout: LinearLayout
     private lateinit var chatScrollView: ScrollView
     private val messageHistory: MutableList<String> = mutableListOf()
+    private var isBotTyping: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         // mensaje usuario
         runOnUiThread {
             addMessageToChatView("$message", Gravity.END)
+            showBotTyping()
         }
 
         client.newCall(request).enqueue(object : Callback {
@@ -117,6 +119,7 @@ class MainActivity : AppCompatActivity() {
                                 .getString("content")
                             // mensaje bot
                             runOnUiThread {
+                                hideBotTyping()
                                 addMessageToChatView("$reply", Gravity.START)
                                 chatScrollView.post {
                                     chatScrollView.fullScroll(View.FOCUS_DOWN)
@@ -180,5 +183,23 @@ class MainActivity : AppCompatActivity() {
         chatLinearLayout.removeAllViews()
         messageHistory.clear()
         addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
+    }
+    private fun showBotTyping() {
+        if (!isBotTyping) {
+            isBotTyping = true
+            val typingMessage = "Escribiendo..."
+            runOnUiThread {
+                addMessageToChatView(typingMessage, Gravity.START)
+            }
+        }
+    }
+
+    private fun hideBotTyping() {
+        if (isBotTyping) {
+            isBotTyping = false
+            runOnUiThread {
+                chatLinearLayout.removeViewAt(chatLinearLayout.childCount - 1) // Remover el último mensaje
+            }
+        }
     }
 }
