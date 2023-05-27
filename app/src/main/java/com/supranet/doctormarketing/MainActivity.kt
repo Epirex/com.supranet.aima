@@ -1,11 +1,13 @@
 package com.supranet.doctormarketing
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             if (message.isNotEmpty()) {
                 sendMessageToChatGPT(message)
                 messageEditText.text.clear()
+                hideKeyboard()
             }
         }
 
@@ -201,5 +204,9 @@ class MainActivity : AppCompatActivity() {
                 chatLinearLayout.removeViewAt(chatLinearLayout.childCount - 1) // Remover el último mensaje
             }
         }
+    }
+    private fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(messageEditText.windowToken, 0)
     }
 }
