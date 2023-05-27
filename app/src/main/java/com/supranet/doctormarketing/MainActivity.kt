@@ -103,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         // mensaje usuario
         runOnUiThread {
             addMessageToChatView("$message", Gravity.END)
+            chatScrollView.fullScroll(View.FOCUS_DOWN)
             showBotTyping()
         }
 
