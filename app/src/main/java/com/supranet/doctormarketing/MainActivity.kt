@@ -1,6 +1,7 @@
 package com.supranet.doctormarketing
 
 import android.content.Context
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -19,6 +21,15 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import java.util.*
+import javax.activation.CommandMap
+import javax.activation.MailcapCommandMap
+import javax.mail.Message
+import javax.mail.Session
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeBodyPart
+import javax.mail.internet.MimeMessage
+import javax.mail.internet.MimeMultipart
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var chatLinearLayout: LinearLayout
     private lateinit var chatScrollView: ScrollView
     private val messageHistory: MutableList<String> = mutableListOf()
+    private val messageHistoryToSend: MutableList<Pair<String, String>> = mutableListOf()
     private var isBotTyping: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     private fun sendMessageToChatGPT(message: String) {
         // Agregar el mensaje actual al historial
         messageHistory.add(message)
+        messageHistoryToSend.add(Pair("Usted", message))
 
         // Mantener solo los últimos 10 mensajes en el historial
         if (messageHistory.size > 10) {
@@ -121,6 +134,8 @@ class MainActivity : AppCompatActivity() {
                         if (choices.length() > 0) {
                             val reply = choices.getJSONObject(0).getJSONObject("message")
                                 .getString("content")
+                            // Guardar mensaje del bot en el historial
+                            messageHistoryToSend.add(Pair("AIMA", reply))
                             // mensaje bot
                             runOnUiThread {
                                 hideBotTyping()
@@ -183,11 +198,114 @@ class MainActivity : AppCompatActivity() {
         chatLinearLayout.addView(parentLinearLayout)
     }
 
-    private fun clearChat() {
-        chatLinearLayout.removeAllViews()
-        messageHistory.clear()
-        addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
+    // Enviar historial del chat en segundo plano
+    private inner class SendEmailTask(private val email: String, private val conversation: String) : AsyncTask<Void, Void, Boolean>() {
+        override fun doInBackground(vararg params: Void): Boolean {
+            try {
+                val properties = Properties().apply {
+                    put("mail.smtp.host", "smtp.gmail.com")
+                    put("mail.smtp.port", "587")
+                    put("mail.smtp.auth", "true")
+                    put("mail.smtp.starttls.enable", "true")
+                }
+
+                val session = Session.getInstance(properties, object : javax.mail.Authenticator() {
+                    override fun getPasswordAuthentication(): javax.mail.PasswordAuthentication {
+                        return javax.mail.PasswordAuthentication("supranet.logos@gmail.com", "npmtportarqirmyk")
+                    }
+                })
+
+                val message = MimeMessage(session)
+                message.setFrom(InternetAddress("supranet.logos@gmail.com"))
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
+                message.subject = "Conversación del chat"
+                message.sentDate = Date()
+
+                // No me pregunten que es esto, lo saque de stackoverflow y me permitio enviar mails
+                val mc = CommandMap.getDefaultCommandMap() as MailcapCommandMap
+                mc.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html")
+                mc.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml")
+                mc.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain")
+                mc.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed")
+                mc.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822")
+                CommandMap.setDefaultCommandMap(mc)
+
+                val textPart = MimeBodyPart().apply {
+                    setText(conversation)
+                }
+
+                val multipart = MimeMultipart().apply {
+                    addBodyPart(textPart)
+                }
+                message.setContent(multipart)
+
+                val transport = session.transport
+                transport.connect()
+                transport.sendMessage(message, message.allRecipients)
+                transport.close()
+
+                return true
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return false
+            }
+        }
+
+        override fun onPostExecute(result: Boolean) {
+            if (result) {
+                Toast.makeText(applicationContext, "Correo enviado correctamente", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Error al enviar el correo", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
+
+    private fun sendEmailInBackground(email: String, conversation: String) {
+        val sendEmailTask = SendEmailTask(email, conversation)
+        sendEmailTask.execute()
+    }
+
+
+    private fun clearChat() {
+        val conversation = buildConversation()
+
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Enviar conversación por correo")
+        alertDialogBuilder.setMessage("Por favor, ingrese su correo electrónico:")
+        val inputEmail = EditText(this)
+        val lp = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        )
+        inputEmail.layoutParams = lp
+        alertDialogBuilder.setView(inputEmail)
+        alertDialogBuilder.setPositiveButton("Enviar") { dialog, _ ->
+            val email = inputEmail.text.toString()
+            sendEmailInBackground(email, conversation)
+            chatLinearLayout.removeAllViews()
+            messageHistory.clear()
+            addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
+            dialog.dismiss()
+        }
+        alertDialogBuilder.setNegativeButton("Cancelar") { dialog, _ ->
+            chatLinearLayout.removeAllViews()
+            messageHistory.clear()
+            addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
+            dialog.dismiss()
+        }
+        alertDialogBuilder.create().show()
+    }
+
+    private fun buildConversation(): String {
+        val conversation = StringBuilder()
+        for (pair in messageHistoryToSend) {
+            val role = pair.first
+            val message = pair.second
+            conversation.append("$role: $message\n")
+        }
+        return conversation.toString()
+    }
+
     private fun showBotTyping() {
         if (!isBotTyping) {
             isBotTyping = true
