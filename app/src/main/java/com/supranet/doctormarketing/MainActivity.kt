@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     private val messageHistory: MutableList<String> = mutableListOf()
     private val messageHistoryToSend: MutableList<Pair<String, String>> = mutableListOf()
     private var isBotTyping: Boolean = false
+    private val messageIntial = "Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento."
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         // Saludo inicial del bot
-        addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
+        addMessageToChatView(messageIntial, Gravity.START)
     }
 
     private fun sendMessageToChatGPT(message: String) {
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val messagesArray = JSONArray().apply {
-            put(JSONObject().put("role", "system").put("content", "Eres una inteligencia artificial desarrollada por Supranet, te llamas AIMA, ahora eres una especialista en marketing con más de 20 años de experiencia. Tu objetivo será responder solamente a consultas relacionadas al marketing y los negocios. Responderás de forma amable y cortés, y con cada respuesta realizarás preguntas sobre la temática sobre la que estás charlando, buscando ayudar al usuario a descubrir otra información relevante que debe considerar sobre el tema en cuestión. Si te preguntan sobre temas que no tengan que ver con los negocios o el marketing, siempre darás por entendido que lo que se busca es una orientación de marketing respecto al texto introducido, y si hace falta más información para dar una respuesta asertiva, harás preguntas sobre el tema en cuestión solo si es absolutamente relevante."))
+            put(JSONObject().put("role", "system").put("content", "Eres una inteligencia artificial desarrollada por Supranet, te llamas AIMA, ahora eres una especialista en marketing con más de 20 años de experiencia. Tu objetivo será responder solamente a consultas relacionadas al marketing y los negocios. No saludaras en tus respuestas ya no que no es necesario y tus respuestas seran cortas y resumidas. Si te preguntan sobre temas que no tengan que ver con los negocios o el marketing, siempre darás por entendido que lo que se busca es una orientación de marketing, también podrás decirle que eso no esta relacionado con el marketing y aclararle al usuario que no te pagan por responder esas cosas."))
             for (i in messageHistory.indices) {
                 put(JSONObject().put("role", "user").put("content", messageHistory[i]))
             }
@@ -147,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     } else {
                         runOnUiThread {
-                            addMessageToChatView("Error: Invalid response", Gravity.START)
+                            addMessageToChatView("Error: Ups! vuelve a intentarlo.", Gravity.START)
                         }
                     }
                 }
@@ -218,7 +219,7 @@ class MainActivity : AppCompatActivity() {
                 val message = MimeMessage(session)
                 message.setFrom(InternetAddress("supranet.logos@gmail.com"))
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
-                message.subject = "Conversación del chat"
+                message.subject = "Supranet: ¡Esta fue tu conversacion con AIMA!"
                 message.sentDate = Date()
 
                 // No me pregunten que es esto, lo saque de stackoverflow y me permitio enviar mails
@@ -271,7 +272,7 @@ class MainActivity : AppCompatActivity() {
 
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Enviar conversación por correo")
-        alertDialogBuilder.setMessage("Por favor, ingrese su correo electrónico:")
+        alertDialogBuilder.setMessage("Por favor, ingresa tu correo electrónico:")
         val inputEmail = EditText(this)
         val lp = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -284,13 +285,13 @@ class MainActivity : AppCompatActivity() {
             sendEmailInBackground(email, conversation)
             chatLinearLayout.removeAllViews()
             messageHistory.clear()
-            addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
+            addMessageToChatView(messageIntial, Gravity.START)
             dialog.dismiss()
         }
         alertDialogBuilder.setNegativeButton("Cancelar") { dialog, _ ->
             chatLinearLayout.removeAllViews()
             messageHistory.clear()
-            addMessageToChatView("Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento.", Gravity.START)
+            addMessageToChatView(messageIntial, Gravity.START)
             dialog.dismiss()
         }
         alertDialogBuilder.create().show()
@@ -298,6 +299,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun buildConversation(): String {
         val conversation = StringBuilder()
+        val additionalMessage = "Espero que te encuentres muy bien, te comparto una copia de nuestra conversacion. Muchas gracias por participar :)"
+        conversation.append("$additionalMessage\n\n")
         for (pair in messageHistoryToSend) {
             val role = pair.first
             val message = pair.second
@@ -320,7 +323,7 @@ class MainActivity : AppCompatActivity() {
         if (isBotTyping) {
             isBotTyping = false
             runOnUiThread {
-                chatLinearLayout.removeViewAt(chatLinearLayout.childCount - 1) // Remover el último mensaje
+                chatLinearLayout.removeViewAt(chatLinearLayout.childCount - 1)
             }
         }
     }
