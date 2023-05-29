@@ -89,9 +89,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         val messagesArray = JSONArray().apply {
-            put(JSONObject().put("role", "system").put("content", "Eres una inteligencia artificial desarrollada por Supranet, te llamas AIMA, ahora eres una especialista en marketing con más de 20 años de experiencia. Tu objetivo será responder solamente a consultas relacionadas al marketing y los negocios. No saludaras en tus respuestas ya no que no es necesario y tus respuestas seran cortas y resumidas. Si te preguntan sobre temas que no tengan que ver con los negocios o el marketing, siempre darás por entendido que lo que se busca es una orientación de marketing, también podrás decirle que eso no esta relacionado con el marketing y aclararle al usuario que no te pagan por responder esas cosas."))
-            for (i in messageHistory.indices) {
-                put(JSONObject().put("role", "user").put("content", messageHistory[i]))
+            put(JSONObject().put("role", "system").put("content", "Te llamas AIMA y sos una asistente de marketing. Solo responderas preguntas relacionadas al marketing y los negocios. Al final de cada mensaje haras una pregunta relacionada al tema para que la conversacion fluya mejor."))
+            val lastMessages = messageHistoryToSend.takeLast(5)
+            lastMessages.forEach {
+                put(JSONObject().put("role", "user").put("content", it.second))
             }
         }
 
@@ -109,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             .url("https://api.openai.com/v1/chat/completions")
             .addHeader(
                 "Authorization",
-                "Bearer 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"
+                "Bearer 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"
             )
             .post(requestBody)
             .build()
