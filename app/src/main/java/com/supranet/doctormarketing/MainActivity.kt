@@ -1,6 +1,7 @@
 package com.supranet.doctormarketing
 
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -88,8 +89,16 @@ class MainActivity : AppCompatActivity() {
             messageHistory.removeAt(0)
         }
 
+        val tipoEmprendimiento = intent.getStringExtra("storedInformation")
+        Log.d("MainActivity", "storedInformation in private : $tipoEmprendimiento")
+
+        val promptDefault = "Te llamas AIMA y sos una asistente de marketing. " +
+                "Solo responderás preguntas relacionadas al marketing y los negocios. " +
+                "Al final de cada mensaje harás una pregunta relacionada al tema para que la conversación fluya mejor. " +
+                "El usuario tendrá un emprendimiento de: $tipoEmprendimiento"
+
         val messagesArray = JSONArray().apply {
-            put(JSONObject().put("role", "system").put("content", "Te llamas AIMA y sos una asistente de marketing. Solo responderas preguntas relacionadas al marketing y los negocios. Al final de cada mensaje haras una pregunta relacionada al tema para que la conversacion fluya mejor."))
+            put(JSONObject().put("role", "system").put("content", promptDefault))
             val lastMessages = messageHistoryToSend.takeLast(5)
             lastMessages.forEach {
                 put(JSONObject().put("role", "user").put("content", it.second))
@@ -288,12 +297,16 @@ class MainActivity : AppCompatActivity() {
             messageHistory.clear()
             addMessageToChatView(messageIntial, Gravity.START)
             dialog.dismiss()
+            val intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
         }
         alertDialogBuilder.setNegativeButton("Cancelar") { dialog, _ ->
             chatLinearLayout.removeAllViews()
             messageHistory.clear()
             addMessageToChatView(messageIntial, Gravity.START)
             dialog.dismiss()
+            val intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
         }
         alertDialogBuilder.create().show()
     }
