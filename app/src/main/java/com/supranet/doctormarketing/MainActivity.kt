@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private val messageHistory: MutableList<String> = mutableListOf()
     private val messageHistoryToSend: MutableList<Pair<String, String>> = mutableListOf()
     private var isBotTyping: Boolean = false
-    private val messageIntial = "Mi nombre es AIMA, una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento."
+    private val messageIntial = "Mi nombre es AIMA, soy una Inteligencia Artificial especializada en marketing, puedes realizarme consultas para ayudarte en tu emprendimiento ¿En que te puedo ayudar?"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,15 +81,26 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        messageEditText.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_F5 && event.action == KeyEvent.ACTION_DOWN) {
-                clearChat()
-                messageEditText.requestFocus()
-                true
-            } else {
-                false
+        messageEditText.setOnKeyListener{ _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                when (keyCode) {
+                    KeyEvent.KEYCODE_F5 -> {
+                        clearChat()
+                        messageEditText.requestFocus()
+                        true
+                    }
+                    KeyEvent.KEYCODE_DPAD_UP -> {
+                        scrollChatUp()
+                        true
+                    }
+                    KeyEvent.KEYCODE_DPAD_DOWN -> {
+                        scrollChatDown()
+                        true
+                    }
+                }
             }
-        })
+            false
+        }
 
         // boton de enviar
         sendButton.setOnClickListener {
@@ -212,7 +223,7 @@ class MainActivity : AppCompatActivity() {
         textView.text = message
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f)
         textView.setBackgroundResource(R.drawable.chat_bubble)
-        textView.setPadding(16, 8, 16, 8)
+        textView.setPadding(32, 16, 32, 16)
         textView.layoutParams = layoutParams
         //textView.gravity = Gravity.CENTER_VERTICAL
         textView.setTextColor(ContextCompat.getColor(this, R.color.md_theme_light_onPrimary))
@@ -382,5 +393,18 @@ class MainActivity : AppCompatActivity() {
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(messageEditText.windowToken, 0)
+    }
+    private fun scrollChatUp() {
+        chatScrollView.post {
+            val scrollAmount = 200 // Cantidad de desplazamiento en píxeles
+            chatScrollView.scrollBy(0, -scrollAmount)
+        }
+    }
+
+    private fun scrollChatDown() {
+        chatScrollView.post {
+            val scrollAmount = 200 // Cantidad de desplazamiento en píxeles
+            chatScrollView.scrollBy(0, scrollAmount)
+        }
     }
 }
