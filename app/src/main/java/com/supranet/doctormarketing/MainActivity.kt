@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private val messageHistory: MutableList<String> = mutableListOf()
     private val messageHistoryToSend: MutableList<Pair<String, String>> = mutableListOf()
     private var isBotTyping: Boolean = false
-    private val messageIntial = "Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento."
+    private val messageIntial = "Mi nombre es AIMA, una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento."
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +56,40 @@ class MainActivity : AppCompatActivity() {
         chatLinearLayout = findViewById(R.id.chatLinearLayout)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val clearButton: ImageButton = findViewById(R.id.clearButton)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        // Configurar teclado fisico
+        messageEditText.requestFocus()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+
+        messageEditText.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEND ||
+                (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
+            ) {
+                val message = messageEditText.text.toString()
+                if (message.isNotEmpty()) {
+                    sendMessageToChatGPT(message)
+                    messageEditText.text.clear()
+                    hideKeyboard()
+                    messageEditText.requestFocus()
+                }
+                true
+            } else {
+                false
+            }
+        }
+
+        messageEditText.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_F5 && event.action == KeyEvent.ACTION_DOWN) {
+                clearChat()
+                messageEditText.requestFocus()
+                true
+            } else {
+                false
+            }
+        })
 
         // boton de enviar
         sendButton.setOnClickListener {
@@ -67,7 +102,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         // boton de limpieza
-        val clearButton: ImageButton = findViewById(R.id.clearButton)
         clearButton.setOnClickListener {
             clearChat()
         }
@@ -153,12 +187,14 @@ class MainActivity : AppCompatActivity() {
                                 addMessageToChatView("$reply", Gravity.START)
                                 chatScrollView.post {
                                     chatScrollView.fullScroll(View.FOCUS_DOWN)
+                                    messageEditText.requestFocus()
                                 }
                             }
                         }
                     } else {
                         runOnUiThread {
                             addMessageToChatView("Error: Ups! vuelve a intentarlo.", Gravity.START)
+                            messageEditText.requestFocus()
                         }
                     }
                 }
@@ -283,7 +319,9 @@ class MainActivity : AppCompatActivity() {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Enviar conversación por correo")
         alertDialogBuilder.setMessage("Por favor, ingresa tu correo electrónico:")
-        val inputEmail = EditText(this)
+        val inputEmail = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_TEXT
+        }
         val lp = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT

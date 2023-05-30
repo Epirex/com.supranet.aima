@@ -23,6 +23,7 @@
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="text"
         android:layout_centerInParent="true"
         android:textSize="26sp"
         android:hint="Panaderia..." />
