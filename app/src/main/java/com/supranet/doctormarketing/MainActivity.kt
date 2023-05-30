@@ -172,7 +172,7 @@ class MainActivity : AppCompatActivity() {
         // mensaje usuario
         runOnUiThread {
             addMessageToChatView("$message", Gravity.END)
-            chatScrollView.fullScroll(View.FOCUS_DOWN)
+            scrollChat()
             showBotTyping()
         }
 
@@ -197,7 +197,7 @@ class MainActivity : AppCompatActivity() {
                                 hideBotTyping()
                                 addMessageToChatView("$reply", Gravity.START)
                                 chatScrollView.post {
-                                    chatScrollView.fullScroll(View.FOCUS_DOWN)
+                                    scrollChat()
                                     messageEditText.requestFocus()
                                 }
                             }
@@ -400,11 +400,16 @@ class MainActivity : AppCompatActivity() {
             chatScrollView.scrollBy(0, -scrollAmount)
         }
     }
-
     private fun scrollChatDown() {
         chatScrollView.post {
             val scrollAmount = 200 // Cantidad de desplazamiento en píxeles
             chatScrollView.scrollBy(0, scrollAmount)
         }
+    }
+    private fun scrollChat() {
+        chatScrollView.postDelayed({
+            chatScrollView.fullScroll(View.FOCUS_DOWN)
+            messageEditText.requestFocus()
+        }, 100)
     }
 }
