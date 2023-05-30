@@ -18,6 +18,7 @@ class StartActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var editText: EditText
     private lateinit var botonIniciar: Button
+    private lateinit var botonRefresh: Button
     private var storedInformation: String = ""
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -28,6 +29,7 @@ class StartActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
         editText = findViewById(R.id.editText)
         botonIniciar = findViewById(R.id.iniciar)
+        botonRefresh = findViewById(R.id.refresh)
 
         // Configuración del WebView
         webView.webChromeClient = WebChromeClient()
@@ -46,6 +48,9 @@ class StartActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("storedInformation", inputText)
             startActivity(intent)
+        }
+        botonRefresh.setOnClickListener {
+            webView.reload()
         }
     }
 }
