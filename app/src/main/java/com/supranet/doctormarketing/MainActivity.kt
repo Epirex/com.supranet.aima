@@ -1,13 +1,17 @@
 package com.supranet.doctormarketing
 
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -40,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private val messageHistory: MutableList<String> = mutableListOf()
     private val messageHistoryToSend: MutableList<Pair<String, String>> = mutableListOf()
     private var isBotTyping: Boolean = false
-    private val messageIntial = "Hola! soy AIMA. Una inteligencia artificial desarrollada por Supranet. Puedes realizarme consultas sobre marketing para ayudarte con tu emprendimiento."
+    private val messageIntial = "Mi nombre es AIMA, soy una Inteligencia Artificial especializada en marketing, puedes realizarme consultas para ayudarte en tu emprendimiento ¿En que te puedo ayudar?"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +56,56 @@ class MainActivity : AppCompatActivity() {
         chatLinearLayout = findViewById(R.id.chatLinearLayout)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val clearButton: ImageButton = findViewById(R.id.clearButton)
+        val homeButton: ImageButton =findViewById(R.id.homeButton)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        // Configurar teclado fisico
+        messageEditText.requestFocus()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+
+        messageEditText.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEND ||
+                (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
+            ) {
+                val message = messageEditText.text.toString()
+                if (message.isNotEmpty()) {
+                    sendMessageToChatGPT(message)
+                    messageEditText.text.clear()
+                    hideKeyboard()
+                    messageEditText.requestFocus()
+                }
+                true
+            } else {
+                false
+            }
+        }
+
+        messageEditText.setOnKeyListener{ _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                when (keyCode) {
+                    KeyEvent.KEYCODE_F6 -> {
+                        clearChat()
+                        messageEditText.requestFocus()
+                        true
+                    }
+                    KeyEvent.KEYCODE_F5 -> {
+                        backTohome()
+                        true
+                    }
+                    KeyEvent.KEYCODE_DPAD_UP -> {
+                        scrollChatUp()
+                        true
+                    }
+                    KeyEvent.KEYCODE_DPAD_DOWN -> {
+                        scrollChatDown()
+                        true
+                    }
+                }
+            }
+            false
+        }
 
         // boton de enviar
         sendButton.setOnClickListener {
@@ -66,9 +118,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         // boton de limpieza
-        val clearButton: ImageButton = findViewById(R.id.clearButton)
         clearButton.setOnClickListener {
             clearChat()
+        }
+
+        // Boton home
+        homeButton.setOnClickListener{
+            val intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // Mantener pantalla siempre encendida
@@ -88,8 +146,16 @@ class MainActivity : AppCompatActivity() {
             messageHistory.removeAt(0)
         }
 
+        val tipoEmprendimiento = intent.getStringExtra("storedInformation")
+        Log.d("MainActivity", "storedInformation in private : $tipoEmprendimiento")
+
+        val promptDefault = "Te llamas AIMA y sos una asistente de marketing. " +
+                "Solo responderás preguntas relacionadas al marketing y los negocios. " +
+                "Al final de cada mensaje harás una pregunta relacionada al tema para que la conversación fluya mejor. " +
+                "El usuario tendrá un emprendimiento de: $tipoEmprendimiento"
+
         val messagesArray = JSONArray().apply {
-            put(JSONObject().put("role", "system").put("content", "Te llamas AIMA y sos una asistente de marketing. Solo responderas preguntas relacionadas al marketing y los negocios. Al final de cada mensaje haras una pregunta relacionada al tema para que la conversacion fluya mejor."))
+            put(JSONObject().put("role", "system").put("content", promptDefault))
             val lastMessages = messageHistoryToSend.takeLast(5)
             lastMessages.forEach {
                 put(JSONObject().put("role", "user").put("content", it.second))
@@ -118,7 +184,7 @@ class MainActivity : AppCompatActivity() {
         // mensaje usuario
         runOnUiThread {
             addMessageToChatView("$message", Gravity.END)
-            chatScrollView.fullScroll(View.FOCUS_DOWN)
+            scrollChat()
             showBotTyping()
         }
 
@@ -143,13 +209,15 @@ class MainActivity : AppCompatActivity() {
                                 hideBotTyping()
                                 addMessageToChatView("$reply", Gravity.START)
                                 chatScrollView.post {
-                                    chatScrollView.fullScroll(View.FOCUS_DOWN)
+                                    scrollChat()
+                                    messageEditText.requestFocus()
                                 }
                             }
                         }
                     } else {
                         runOnUiThread {
                             addMessageToChatView("Error: Ups! vuelve a intentarlo.", Gravity.START)
+                            messageEditText.requestFocus()
                         }
                     }
                 }
@@ -167,7 +235,7 @@ class MainActivity : AppCompatActivity() {
         textView.text = message
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f)
         textView.setBackgroundResource(R.drawable.chat_bubble)
-        textView.setPadding(16, 8, 16, 8)
+        textView.setPadding(32, 16, 32, 16)
         textView.layoutParams = layoutParams
         //textView.gravity = Gravity.CENTER_VERTICAL
         textView.setTextColor(ContextCompat.getColor(this, R.color.md_theme_light_onPrimary))
@@ -213,14 +281,15 @@ class MainActivity : AppCompatActivity() {
 
                 val session = Session.getInstance(properties, object : javax.mail.Authenticator() {
                     override fun getPasswordAuthentication(): javax.mail.PasswordAuthentication {
-                        return javax.mail.PasswordAuthentication("supranet.logos@gmail.com", "npmtportarqirmyk")
+                        return javax.mail.PasswordAuthentication("minceit.aima@gmail.com", "ninhenpgvlmeklfs")
                     }
                 })
 
                 val message = MimeMessage(session)
-                message.setFrom(InternetAddress("supranet.logos@gmail.com"))
+                message.setFrom(InternetAddress("minceit.aima@gmail.com"))
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
-                message.subject = "Supranet: ¡Esta fue tu conversacion con AIMA!"
+                message.subject = "\n" +
+                        "Ministerio de Ciencia e Innovación Tecnologica: ¡Esta fue tu conversacion con AIMA!"
                 message.sentDate = Date()
 
                 // No me pregunten que es esto, lo saque de stackoverflow y me permitio enviar mails
@@ -274,7 +343,9 @@ class MainActivity : AppCompatActivity() {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Enviar conversación por correo")
         alertDialogBuilder.setMessage("Por favor, ingresa tu correo electrónico:")
-        val inputEmail = EditText(this)
+        val inputEmail = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_TEXT
+        }
         val lp = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT
@@ -288,6 +359,9 @@ class MainActivity : AppCompatActivity() {
             messageHistory.clear()
             addMessageToChatView(messageIntial, Gravity.START)
             dialog.dismiss()
+            val intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         alertDialogBuilder.setNegativeButton("Cancelar") { dialog, _ ->
             chatLinearLayout.removeAllViews()
@@ -331,5 +405,28 @@ class MainActivity : AppCompatActivity() {
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(messageEditText.windowToken, 0)
+    }
+    private fun scrollChatUp() {
+        chatScrollView.post {
+            val scrollAmount = 200 // Cantidad de desplazamiento en píxeles
+            chatScrollView.scrollBy(0, -scrollAmount)
+        }
+    }
+    private fun scrollChatDown() {
+        chatScrollView.post {
+            val scrollAmount = 200 // Cantidad de desplazamiento en píxeles
+            chatScrollView.scrollBy(0, scrollAmount)
+        }
+    }
+    private fun scrollChat() {
+        chatScrollView.postDelayed({
+            chatScrollView.fullScroll(View.FOCUS_DOWN)
+            messageEditText.requestFocus()
+        }, 100)
+    }
+    private fun backTohome() {
+        val intent = Intent(this, StartActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

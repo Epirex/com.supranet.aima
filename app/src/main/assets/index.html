@@ -1,0 +1,2737 @@
+<!DOCTYPE html>
+		<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+		<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+		<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+		<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+		<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<title>hidroper - Slider Revolution</title>
+			<meta name="description" content="Slider Revolution Example" />
+			<meta name="keywords" content="fullscreen image, grid layout, flexbox grid, transition" />
+			<meta name="author" content="ThemePunch" />
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+
+			<!-- LOAD JQUERY LIBRARY -->
+			<script src="file:///android_asset/jquery.js"></script>
+			
+			<!-- LOADING FONTS AND ICONS -->
+			<link href="https://fonts.googleapis.com/css?family=Roboto:400%2C700%2C900&display=swap" rel="stylesheet" property="stylesheet" media="all" type="text/css" >
+
+			
+			<link rel="stylesheet" type="text/css" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+			<link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+			
+			<!-- REVOLUTION STYLE SHEETS -->
+			<link rel="stylesheet" type="text/css" href="css/rs6.css">
+			<!-- REVOLUTION LAYERS STYLES -->
+						<!-- REVOLUTION JS FILES -->
+			
+		<script>
+			window.RS_MODULES = window.RS_MODULES || {};
+			window.RS_MODULES.modules = window.RS_MODULES.modules || {};
+			window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
+			window.RS_MODULES.defered = false;
+			window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
+			window.RS_MODULES.type = 'compiled';
+		</script>
+					<script src="js/rbtools.min.js"></script>
+							<script src="js/rs6.min.js"></script>
+							
+			<script>function setREVStartSize(e){
+			//window.requestAnimationFrame(function() {
+				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;
+				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;
+				try {
+					var pw = document.getElementById(e.c).parentNode.offsetWidth,
+						newh;
+					pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
+					e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
+					e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
+					e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
+					e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
+					e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
+					e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
+					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);
+					if(e.layout==="fullscreen" || e.l==="fullscreen")
+						newh = Math.max(e.mh,window.RSIH);
+					else{
+						e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];
+						e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
+						e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+						for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1];
+											
+						var nl = new Array(e.rl.length),
+							ix = 0,
+							sl;
+						e.tabw = e.tabhide>=pw ? 0 : e.tabw;
+						e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
+						e.tabh = e.tabhide>=pw ? 0 : e.tabh;
+						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;
+						for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
+						sl = nl[0];
+						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}
+						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);
+						newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
+					}
+					var el = document.getElementById(e.c);
+					if (el!==null && el) el.style.height = newh+"px";
+					el = document.getElementById(e.c+"_wrapper");
+					if (el!==null && el) {
+						el.style.height = newh+"px";
+						el.style.display = "block";
+					}
+				} catch(e){
+					console.log("Failure at Presize of Slider:" + e)
+				}
+			//});
+		  };</script>
+
+			
+		</head>
+		
+		<body>
+		
+
+			<!-- START hidroper REVOLUTION SLIDER 6.5.17 --><p class="rs-p-wp-fix"></p>
+			<rs-module-wrap id="rev_slider_86_1_wrapper" data-alias="hidroper" data-source="gallery" style="visibility:hidden;background:transparent;padding:0;">
+				<rs-module id="rev_slider_86_1" style="" data-version="6.5.17">
+					<rs-slides>
+						<rs-slide style="position: absolute;" data-key="rs-2314" data-title="Tapa " data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2314-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:76px;y:1063px;"
+								data-text="w:normal;"
+								data-dim="w:905px;h:868px;"
+								data-frame_0="y:50;"
+								data-frame_1="st:1320;sp:1000;sR:1320;"
+								data-frame_999="o:0;st:w;sR:12430;"
+								style="z-index:15;"
+							><img src="assets/hiroper-campera.png" alt="" class="tp-rs-img" width="956" height="917" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-13px;y:c;yo:-654px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:562px;h:77px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:630;sp:1200;sR:630;"
+								data-frame_999="o:0;st:w;sR:12920;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:13;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-13" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:367px;y:565px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:352px;h:86px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1670;sp:1000;sR:1670;"
+								data-frame_999="o:0;st:w;sR:12080;"
+								style="z-index:14;cursor:crosshair;"
+							><img src="assets/ENTRAR.png" alt="" class="tp-rs-img" width="396" height="97" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:240px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:740;sp:1000;sR:740;"
+								data-frame_999="o:0;st:w;sR:13010;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-24" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:17px;y:1376px;"
+								data-text="w:normal;"
+								data-dim="w:690px;h:620px;"
+								data-frame_0="y:bottom;"
+								data-frame_1="st:2260;sp:1000;sR:2260;"
+								data-frame_999="o:0;st:w;sR:11490;"
+								data-loop_0="y:-10;"
+								data-loop_999="y:20px;sp:6000;e:sine.inOut;yym:t;"
+								style="z-index:10;"
+							><img src="assets/pngegg-48.png" alt="" class="tp-rs-img" width="665" height="598" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-25" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:636px;y:1176px;"
+								data-text="w:normal;"
+								data-dim="w:370px;h:281px;"
+								data-frame_1="x:3px;y:4px;e:power4.inOut;st:2850;sp:1040;sR:2850;"
+								data-frame_999="o:0;st:w;sR:10860;"
+								data-loop_0="y:-10;"
+								data-loop_999="y:10;sp:16000;e:sine.inOut;yym:t;"
+								style="z-index:11;"
+							><img src="assets/pngegg-46.png" alt="" class="tp-rs-img" width="420" height="319" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-26" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:346px;y:877px;"
+								data-text="w:normal;"
+								data-dim="w:412px;h:796px;"
+								data-frame_0="y:bottom;"
+								data-frame_1="st:3410;sp:1000;sR:3410;"
+								data-frame_999="o:0;st:w;sR:10340;"
+								data-loop_0="y:-10;"
+								data-loop_999="y:10;sp:13200;e:sine.inOut;yym:t;"
+								style="z-index:12;"
+							><img src="assets/pngegg-48-copia.png" alt="" class="tp-rs-img" width="253" height="489" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2314-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/El-Condor-Pasa-Electroplano-Jaime-Torres-Folk-Fusion-HQ.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:16;"
+							> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2317" data-title="menu" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2317-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:609px;y:1304px;"
+								data-text="w:normal;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:11;"
+							><img src="assets/Grupo-1.png" alt="" class="tp-rs-img" width="481" height="647" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:500px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2318;'
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:19;"
+							><img src="assets/Empresa.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-2" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:620px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2325;'
+								data-frame_1="st:900;sR:900;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								style="z-index:18;"
+							><img src="assets/Servicios.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-3" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:740px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2341;'
+								data-frame_1="st:1060;sR:1060;"
+								data-frame_999="o:0;st:w;sR:13390;"
+								style="z-index:17;"
+							><img src="assets/productos.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-4" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:860px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2321;'
+								data-frame_1="st:1210;sR:1210;"
+								data-frame_999="o:0;st:w;sR:13240;"
+								style="z-index:16;"
+							><img src="assets/Territorio.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-5" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:980px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2320;'
+								data-frame_1="st:1350;sR:1350;"
+								data-frame_999="o:0;st:w;sR:13100;"
+								style="z-index:15;"
+							><img src="assets/Galeria.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-6" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:1100px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2338;'
+								data-frame_1="st:1500;sR:1500;"
+								data-frame_999="o:0;st:w;sR:12950;"
+								style="z-index:14;"
+							><img src="assets/trayectoria.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2314;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:20;"
+							><img src="assets/incio.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:240px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-35" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:1220px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2342;'
+								data-frame_1="st:1660;sR:1660;"
+								data-frame_999="o:0;st:w;sR:12790;"
+								style="z-index:13;"
+							><img src="assets/contacto.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2317-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:12;"
+							> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2318" data-title="empresa" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/fondo-2.jpg" alt="" title="fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2318-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:680px;y:1320px;"
+								data-text="w:normal;"
+								data-frame_1="st:1200;sp:700;sR:1200;"
+								data-frame_999="o:0;st:w;sR:12850;"
+								style="z-index:9;"
+							><img src="assets/obrero-ok-chico-derecha.png" alt="" class="tp-rs-img" width="394" height="600" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:11;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-9" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:391px;"
+								data-text="w:normal;"
+								data-dim="w:390px;h:78px;"
+								data-frame_0="x:-50;"
+								data-frame_1="x:-1px;y:1px;st:590;sp:1000;sR:590;"
+								data-frame_999="o:0;st:w;sR:13160;"
+								style="z-index:12;"
+							><img src="assets/mision.png" alt="" class="tp-rs-img" width="390" height="78" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-1px;y:c;yo:-741px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:421px;h:58px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;sp:1200;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:8;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-11" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:151px;y:495px;"
+								data-text="w:normal;"
+								data-dim="w:780px;h:110px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="e:power2.inOut;st:1110;sp:1000;sR:1110;"
+								data-frame_999="o:0;st:w;sR:12640;"
+								style="z-index:13;"
+							><img src="assets/Ofrecer-soluciones-integrales-en-el-campo-de-la-Geologia-y-la-I.png" alt="" class="tp-rs-img" width="780" height="110" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-12" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-9px;y:688px;"
+								data-text="w:normal;"
+								data-dim="w:390px;h:78px;"
+								data-frame_0="x:-50;"
+								data-frame_1="x:-1px;y:1px;st:2110;sp:1000;sR:2110;"
+								data-frame_999="o:0;st:w;sR:11640;"
+								style="z-index:14;"
+							><img src="assets/vision.png" alt="" class="tp-rs-img" width="390" height="78" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-14" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:797px;"
+								data-text="w:normal;"
+								data-dim="w:779px;h:81px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="e:power2.inOut;st:2650;sp:1000;sR:2650;"
+								data-frame_999="o:0;st:w;sR:11100;"
+								style="z-index:15;"
+							><img src="assets/Ser-una-empresa-lider-en-la-region-del-NOA-en-el-desarrollo-de-.png" alt="" class="tp-rs-img" width="779" height="81" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-15" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:978px;"
+								data-text="w:normal;"
+								data-dim="w:390px;h:78px;"
+								data-frame_0="x:-50;"
+								data-frame_1="x:-1px;y:1px;st:3640;sp:1000;sR:3640;"
+								data-frame_999="o:0;st:w;sR:10110;"
+								style="z-index:16;"
+							><img src="assets/vision-copia.png" alt="" class="tp-rs-img" width="390" height="78" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-16" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:1078px;"
+								data-text="w:normal;"
+								data-dim="w:780px;h:75px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="e:power2.inOut;st:4170;sp:1000;sR:4170;"
+								data-frame_999="o:0;st:w;sR:9580;"
+								style="z-index:17;"
+							><img src="assets/HIDROPER-es-una-empresa-familiar-que-mantiene-aun-vigente-los-.png" alt="" class="tp-rs-img" width="780" height="75" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-17" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-48px;y:1199px;"
+								data-text="w:normal;"
+								data-dim="w:585px;h:138px;"
+								data-frame_0="x:-50;"
+								data-frame_1="st:4660;sp:1000;"
+								data-frame_999="o:0;st:w;sR:9090;"
+								style="z-index:18;"
+							><img src="assets/Honestidad-Compromiso-Interes-y-respeto-por-las-personas-.png" alt="" class="tp-rs-img" width="585" height="138" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2318-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:10;"
+							> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2321" data-title="territorio 1" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/fondo-2.jpg" alt="" title="fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2321-layer-7" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:687px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2322;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:11;"
+							><img src="assets/brasil.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:10;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-9" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:375px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-frame_0="x:-50;"
+								data-frame_1="x:-1px;y:1px;st:590;sp:1000;sR:590;"
+								data-frame_999="o:0;st:w;sR:13160;"
+								style="z-index:12;"
+							><img src="assets/Argentina-title.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-1px;y:c;yo:-741px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:421px;h:58px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;sp:1200;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:8;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-11" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:308px;y:536px;"
+								data-text="w:normal;"
+								data-dim="w:514px;h:1108px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="e:power2.inOut;st:1110;sp:1000;sR:1110;"
+								data-frame_999="o:0;st:w;sR:12640;"
+								style="z-index:13;"
+							><img src="assets/mapa-argentina-gris.png" alt="" class="tp-rs-img" width="514" height="1108" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-19" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:360px;y:651px;"
+								data-text="w:normal;"
+								data-dim="w:122px;h:160px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:2110;sp:1000;sR:2110;"
+								data-frame_999="o:0;st:w;sR:11640;"
+								style="z-index:14;"
+							><img src="assets/catamarca.png" alt="" class="tp-rs-img" width="122" height="160" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-20" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:346px;y:740px;"
+								data-text="w:normal;"
+								data-dim="w:123px;h:135px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:2470;sp:1000;sR:2470;"
+								data-frame_999="o:0;st:w;sR:11280;"
+								style="z-index:15;"
+							><img src="assets/la-rioja.png" alt="" class="tp-rs-img" width="123" height="135" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-23" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:459px;y:790px;"
+								data-text="w:normal;"
+								data-dim="w:113px;h:186px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:2830;sp:1000;sR:2830;"
+								data-frame_999="o:0;st:w;sR:10920;"
+								style="z-index:16;"
+							><img src="assets/cordoba.png" alt="" class="tp-rs-img" width="113" height="186" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-27" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:474px;y:665px;"
+								data-text="w:normal;"
+								data-dim="w:103px;h:153px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:3190;sp:1000;sR:3190;"
+								data-frame_999="o:0;st:w;sR:10560;"
+								style="z-index:17;"
+							><img src="assets/santiago-del-estero.png" alt="" class="tp-rs-img" width="103" height="153" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-28" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:445px;y:678px;"
+								data-text="w:normal;"
+								data-dim="w:48px;h:64px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:3560;sp:1000;sR:3560;"
+								data-frame_999="o:0;st:w;sR:10190;"
+								style="z-index:18;"
+							><img src="assets/tucuman.png" alt="" class="tp-rs-img" width="48" height="64" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-29" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:368px;y:540px;"
+								data-text="w:normal;"
+								data-dim="w:191px;h:147px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:3920;sp:1000;sR:3920;"
+								data-frame_999="o:0;st:w;sR:9830;"
+								style="z-index:19;"
+							><img src="assets/salta.png" alt="" class="tp-rs-img" width="191" height="147" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-30" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:410px;y:536px;"
+								data-text="w:normal;"
+								data-dim="w:92px;h:92px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:4330;sp:1000;sR:4330;"
+								data-frame_999="o:0;st:w;sR:9420;"
+								style="z-index:20;"
+							><img src="assets/jujuy.png" alt="" class="tp-rs-img" width="92" height="92" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-31" 
+								data-type="shape"
+								data-rsp_ch="on"
+								data-xy="x:571px;y:1385px;"
+								data-text="w:normal;"
+								data-dim="w:273px;h:229px;"
+								data-frame_1="st:4910;sR:4910;"
+								data-frame_999="o:0;st:w;sR:9540;"
+								style="z-index:21;background-color:rgba(0,0,0,0.5);"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-32" 
+								data-type="text"
+								data-color="#ffffff"
+								data-rsp_ch="on"
+								data-xy="x:601px;y:1412px;"
+								data-text="w:normal;"
+								data-frame_0="o:1;"
+								data-frame_0_chars="d:5;y:100%;o:0;rZ:-35deg;"
+								data-frame_0_words="d:5;y:100%;rZ:0deg;"
+								data-frame_0_mask="u:t;"
+								data-frame_1="st:2080;sp:1200;sR:2080;"
+								data-frame_1_words="d:5;"
+								data-frame_1_mask="u:t;"
+								data-frame_999="o:0;st:w;sR:10970;"
+								style="z-index:22;font-family:'Roboto';"
+							>CATAMARCA<br />
+CÓRDOBA<br />
+SANTIAGO DEL ESTERO<br />
+SALTA<br />
+JUJUY <br />
+TUCUMÁN<br />
+LA RIOJA<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2321-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:9;"
+							> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2322" data-title="territorio 2" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/fondo-2.jpg" alt="" title="fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2322-layer-7" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:687px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2321;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:11;"
+							><img src="assets/argentina.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:10;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-9" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:375px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-frame_0="x:-50;"
+								data-frame_1="x:-1px;y:1px;st:590;sp:1000;sR:590;"
+								data-frame_999="o:0;st:w;sR:13160;"
+								style="z-index:12;"
+							><img src="assets/Brasil-title.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-1px;y:c;yo:-741px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:421px;h:58px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;sp:1200;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:8;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-11" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:97px;y:642px;"
+								data-text="w:normal;"
+								data-dim="w:895px;h:918px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="e:power2.inOut;st:1110;sp:1000;sR:1110;"
+								data-frame_999="o:0;st:w;sR:12640;"
+								style="z-index:13;"
+							><img src="assets/mapa-brasil-gris.png" alt="" class="tp-rs-img" width="895" height="918" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-19" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:621px;y:1102px;"
+								data-text="w:normal;"
+								data-dim="w:255px;h:203px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:2110;sp:1000;sR:2110;"
+								data-frame_999="o:0;st:w;sR:11640;"
+								style="z-index:14;"
+							><img src="assets/minas-geiras.png" alt="" class="tp-rs-img" width="255" height="203" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-31" 
+								data-type="shape"
+								data-rsp_ch="on"
+								data-xy="x:95px;y:1490px;"
+								data-text="w:normal;"
+								data-dim="w:273px;h:59px;"
+								data-frame_1="st:2730;sR:2730;"
+								data-frame_999="o:0;st:w;sR:11720;"
+								style="z-index:15;background-color:rgba(0,0,0,0.5);"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-32" 
+								data-type="text"
+								data-color="#ffffff"
+								data-rsp_ch="on"
+								data-xy="x:161px;y:1508px;"
+								data-text="w:normal;"
+								data-frame_0="o:1;"
+								data-frame_0_chars="d:5;y:100%;o:0;rZ:-35deg;"
+								data-frame_0_words="d:5;y:100%;rZ:0deg;"
+								data-frame_0_mask="u:t;"
+								data-frame_1="st:1800;sp:1200;sR:2250;"
+								data-frame_1_words="d:5;"
+								data-frame_1_mask="u:t;"
+								data-frame_999="o:0;st:w;sR:11200;"
+								style="z-index:16;font-family:'Roboto';"
+							>MINAS GERAIS<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2322-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:9;"
+							> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2325" data-title="servicios" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2325-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:609px;y:1304px;"
+								data-text="w:normal;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:11;"
+							><img src="assets/Grupo-1.png" alt="" class="tp-rs-img" width="481" height="647" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2325-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:650px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2335;'
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:19;"
+							><img src="assets/geologia.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2325-layer-2" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:770px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2336;'
+								data-frame_1="st:900;sR:900;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								style="z-index:18;"
+							><img src="assets/ingenieria.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2325-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:20;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2325-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2325-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:240px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2325-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2325-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:12;"
+							> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2335" data-title="geologia menu" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2335-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:466px;y:1344px;"
+								data-text="w:normal;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:10;"
+							><img src="assets/hiroper-campera.png" alt="" class="tp-rs-img" width="956" height="917" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:450px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:17;"
+							><img src="assets/geologia-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-2" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-253px;y:640px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:740;sR:740;"
+								data-frame_999="o:0;st:w;sR:13710;"
+								style="z-index:16;"
+							><img src="assets/ESTUDIOS-HIDROGEOLOGICOS-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2325;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:18;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:19;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:240px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-37" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:253px;y:640px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:890;sR:890;"
+								data-frame_999="o:0;st:w;sR:13560;"
+								style="z-index:15;"
+							><img src="assets/ESTUDIOS-GEOFISICOS-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-38" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-252px;y:900px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:1040;sR:1040;"
+								data-frame_999="o:0;st:w;sR:13410;"
+								style="z-index:14;"
+							><img src="assets/PERFORACIONES-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-39" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-246px;y:1266px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:1340;sR:1340;"
+								data-frame_999="o:0;st:w;sR:13110;"
+								style="z-index:12;"
+							><img src="assets/EVALUACION-DE-PROYECTOS-DE-INVERSION-1-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-40" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:234px;y:900px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:1180;sR:1180;"
+								data-frame_999="o:0;st:w;sR:13270;"
+								style="z-index:13;"
+							><img src="assets/EQUIPOS-DE-BOMBEO-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-41" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:127px;y:728px;"
+								data-text="w:normal;s:18;l:20;"
+								data-frame_0="x:-50;"
+								data-frame_1="st:1430;sp:1000;sR:1430;"
+								data-frame_999="o:0;st:w;sR:12320;"
+								style="z-index:21;font-family:'Arial', 'Helvetica', 'sans-serif';"
+							>- Estudio de Escorrentía Superficial.<br />
+- Estudio de cuencas.<br />
+- Modelados Matemáticos.<br />
+- Estudios de Geotermia.<br />
+- Estudios Químicos del Agua - Modelo.<br />
+- Estudio de Aguas Subterráneas.<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-42" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:633px;y:726px;"
+								data-text="w:normal;s:18;l:20;"
+								data-frame_0="x:50;"
+								data-frame_1="st:1430;sp:1000;sR:1430;"
+								data-frame_999="o:0;st:w;sR:12320;"
+								style="z-index:20;font-family:'Arial', 'Helvetica', 'sans-serif';"
+							>- Perfilajes Eléctricos Computarizados.<br />
+- Perfilaje Nuclear con Rayos Gamma.<br />
+- Prospección Geofísica [Geoeléctrica].<br />
+- TEM.<br />
+<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-43" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:133px;y:994px;"
+								data-text="w:normal;s:18;l:20;"
+								data-frame_0="x:-50;"
+								data-frame_1="st:2420;sp:1000;sR:2420;"
+								data-frame_999="o:0;st:w;sR:11330;"
+								style="z-index:23;font-family:'Arial', 'Helvetica', 'sans-serif';"
+							>- Perforaciones Industriales.<br />
+- Perforaciones Mineras:<br />
+- Perforaciones de Exploración<br />
+- Perforaciones de Producción<br />
+- Perforaciones Termales.<br />
+- Perforaciones para Riego.<br />
+- Perforaciones para Consumo.<br />
+- Perforaciones para Depresión de - Napas.<br />
+- Colocación y Extracción de   Bombas Sumergibles.<br />
+- Limpieza y Filmación de Pozos.<br />
+- Cañerías de Conducción.<br />
+<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-44" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:630px;y:991px;"
+								data-text="w:normal;s:18;l:20;"
+								data-dim="w:335px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:2420;sp:1000;sR:2420;"
+								data-frame_999="o:0;st:w;sR:11330;"
+								style="z-index:22;font-family:'Arial', 'Helvetica', 'sans-serif';"
+							>- Bombas Electrosumergibles.<br />
+- Bombas Superficiales.<br />
+- Bombas Flygt.<br />
+- Bombas Solares.<br />
+- Equipamiento e instalación de perforación llave en mano<br />
+<br />
+<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-45" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:137px;y:1361px;"
+								data-text="w:normal;s:18;l:20;"
+								data-frame_0="x:-50;"
+								data-frame_1="st:3410;sp:1000;sR:3410;"
+								data-frame_999="o:0;st:w;sR:10340;"
+								style="z-index:24;font-family:'Arial', 'Helvetica', 'sans-serif';"
+							>- Minería, Agrícola, Ganadería.<br />
+- Industriales.<br />
+- Factibilidad Técnico / Económica.<br />
+<br />
+<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2335-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:11;"
+							> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2336" data-title="ingeneria menu" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2336-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:751px;y:1453px;"
+								data-text="w:normal;"
+								data-dim="w:312px;h:477px;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:10;"
+							><img src="assets/Capa-15-1.png" alt="" class="tp-rs-img" width="425" height="649" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:401px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:17;"
+							><img src="assets/ingenieria-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-2" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:1038px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:740;sR:740;"
+								data-frame_999="o:0;st:w;sR:13710;"
+								style="z-index:16;"
+							><img src="assets/SOLUCIONES-CON-ENERGIAS-RENOVABLES-1-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2325;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:18;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-741px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:19;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:379px;y:1199px;"
+								data-text="w:normal;"
+								data-dim="w:706px;h:637px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:135px;y:b;yo:-96px;"
+								data-text="w:normal;"
+								data-dim="w:817px;h:619.438px;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-38" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:1355px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:1040;sR:1040;"
+								data-frame_999="o:0;st:w;sR:13410;"
+								style="z-index:14;"
+							><img src="assets/SOLUCIONES-CON-ENERGIA-ELECTRICA-CONVENCIONAL-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-41" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:226px;y:1131px;"
+								data-text="w:normal;s:20;l:22;"
+								data-frame_0="x:-50;"
+								data-frame_1="st:1430;sp:1000;sR:1430;"
+								data-frame_999="o:0;st:w;sR:12320;"
+								style="z-index:21;font-family:'Arial', 'Helvetica', 'sans-serif';"
+							>- Sistemas de Generación Eléctrica - Autónomos. OFF GRID.<br />
+- Sistemas de Generación Eléctrica Conectados a la Red. ON GRID.<br />
+- Sistemas de Bombeo de Agua, Bombas Solares, <br />
+- Bombas Convencionales Integradas con Generación Fotovoltaica.<br />
+- Evaluación de proyectos de Inversión Basados en Energías Renovables.<br />
+- Factibilidad técnico - Económica.<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-43" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:226px;y:1465px;"
+								data-text="w:normal;s:20;l:22;"
+								data-frame_0="x:-50;"
+								data-frame_1="st:2420;sp:1000;sR:2420;"
+								data-frame_999="o:0;st:w;sR:11330;"
+								style="z-index:23;font-family:'Arial', 'Helvetica', 'sans-serif';"
+							>- Instalaciones Eléctricas: Cálculo, diseño, desarrollo, provisión <br />
+- Montaje de sistemas de distribución de energía.<br />
+- Provisión de Materiales Eléctricos.<br />
+- Tableros Eléctricos.<br />
+- Grupos Electrógenos.<br />
+- Instalaciones Llave en Mano.<br />
+<br />
+<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:11;"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-84" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:281px;y:718px;"
+								data-text="w:normal;"
+								data-dim="w:519px;h:239px;"
+								data-frame_0="x:-50;"
+								data-frame_1="y:1px;st:1680;sp:1000;sR:1680;"
+								data-frame_999="o:0;st:w;sR:12070;"
+								style="z-index:22;"
+							><img src="assets/obras.png" alt="" class="tp-rs-img" width="644" height="296" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2336-layer-85" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:275px;y:576px;"
+								data-text="w:normal;"
+								data-dim="w:515px;h:105px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:1180;sp:1000;sR:1180;"
+								data-frame_999="o:0;st:w;sR:12570;"
+								style="z-index:21;"
+							><img src="assets/En-HIDROPER-desarrollamos-proyectos-con-altos-niveles-de-especi.png" alt="" class="tp-rs-img" width="713" height="145" data-no-retina> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2338" data-title="trayectoria" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2338-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:643px;y:1336px;"
+								data-text="w:normal;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:11;"
+							><img src="assets/obrero-ok-chico-derecha.png" alt="" class="tp-rs-img" width="394" height="600" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:491px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2340;'
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:14;"
+							><img src="assets/historia.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-2" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:610px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2339;'
+								data-frame_1="st:900;sR:900;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								style="z-index:13;"
+							><img src="assets/clientes.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:15;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:239px;y:915px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/El-Condor-Pasa-Electroplano-Jaime-Torres-Folk-Fusion-HQ.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:12;"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-74" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:136px;y:880px;"
+								data-text="w:normal;"
+								data-dim="w:289px;h:305px;"
+								data-frame_0="y:50;"
+								data-frame_1="st:1200;sp:1000;sR:1200;"
+								data-frame_999="o:0;st:w;sR:12550;"
+								style="z-index:18;"
+							><img src="assets/info-1.png" alt="" class="tp-rs-img" width="289" height="305" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-75" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:880px;"
+								data-text="w:normal;"
+								data-dim="w:289px;h:305px;"
+								data-frame_0="y:50;"
+								data-frame_1="st:1720;sp:1000;sR:1720;"
+								data-frame_999="o:0;st:w;sR:12030;"
+								style="z-index:17;"
+							><img src="assets/info-2.png" alt="" class="tp-rs-img" width="289" height="305" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-76" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:259px;y:880px;"
+								data-text="w:normal;"
+								data-dim="w:289px;h:305px;"
+								data-frame_0="y:50;"
+								data-frame_1="st:2190;sp:1000;sR:2190;"
+								data-frame_999="o:0;st:w;sR:11560;"
+								style="z-index:16;"
+							><img src="assets/info-3.png" alt="" class="tp-rs-img" width="289" height="305" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-77" 
+								data-type="text"
+								data-color="#ffffff"
+								data-rsp_ch="on"
+								data-xy="x:466px;y:1060px;"
+								data-text="w:normal;s:36;fw:700;"
+								data-frame_0="rY:360deg;"
+								data-frame_1="e:back.out;st:2730;sp:500;sR:2730;"
+								data-frame_999="o:0;st:w;sR:11520;"
+								style="z-index:20;font-family:'Roboto';"
+							>+43.000 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-78" 
+								data-type="text"
+								data-color="#ffffff"
+								data-rsp_ch="on"
+								data-xy="x:195px;y:1060px;"
+								data-text="w:normal;s:36;fw:700;"
+								data-frame_0="rY:360deg;"
+								data-frame_1="e:back.out;st:2190;sp:500;sR:2190;"
+								data-frame_999="o:0;st:w;sR:12060;"
+								style="z-index:21;font-family:'Roboto';"
+							>+108.000 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2338-layer-80" 
+								data-type="text"
+								data-color="#ffffff"
+								data-rsp_ch="on"
+								data-xy="x:775px;y:1060px;"
+								data-text="w:normal;s:36;fw:700;"
+								data-frame_0="rY:360deg;"
+								data-frame_1="e:back.out;st:3220;sp:500;sR:3220;"
+								data-frame_999="o:0;st:w;sR:11030;"
+								style="z-index:19;font-family:'Roboto';"
+							>8<br />
+ 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2339" data-title="clientes" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2339-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:584px;y:1534px;"
+								data-text="w:normal;"
+								data-dim="w:538px;h:391px;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:11;"
+							><img src="assets/elemento-1.png" alt="" class="tp-rs-img" width="769" height="559" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:431px;"
+								data-text="w:normal;"
+								data-dim="w:648px;h:140px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2335;'
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:13;"
+							><img src="assets/elemento-2.png" alt="" class="tp-rs-img" width="648" height="140" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2338;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:14;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:389px;y:1230px;"
+								data-text="w:normal;"
+								data-dim="w:693px;h:625px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:152px;y:b;yo:-89px;"
+								data-text="w:normal;"
+								data-dim="w:780px;h:591.438px;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-46" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:44px;y:747px;"
+								data-text="w:normal;"
+								data-dim="w:167px;h:82px;"
+								data-blendmode="multiply"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:34;"
+							><img src="assets/elemento-4.png" alt="" class="tp-rs-img" width="167" height="82" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-47" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:244px;y:733px;"
+								data-text="w:normal;"
+								data-dim="w:111px;h:109px;"
+								data-blendmode="multiply"
+								data-frame_1="st:150;sR:150;"
+								data-frame_999="o:0;st:w;sR:14300;"
+								style="z-index:33;"
+							><img src="assets/elemento-5.png" alt="" class="tp-rs-img" width="111" height="109" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-48" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:380px;y:745px;"
+								data-text="w:normal;"
+								data-dim="w:187px;h:86px;"
+								data-blendmode="multiply"
+								data-frame_1="st:300;sR:300;"
+								data-frame_999="o:0;st:w;sR:14150;"
+								style="z-index:32;"
+							><img src="assets/elemento-6.png" alt="" class="tp-rs-img" width="187" height="86" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-49" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:594px;y:757px;"
+								data-text="w:normal;"
+								data-dim="w:194px;h:59px;"
+								data-blendmode="multiply"
+								data-frame_1="st:450;sR:450;"
+								data-frame_999="o:0;st:w;sR:14000;"
+								style="z-index:31;"
+							><img src="assets/elemento-7.png" alt="" class="tp-rs-img" width="194" height="59" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-50" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:814px;y:766px;"
+								data-text="w:normal;"
+								data-dim="w:229px;h:43px;"
+								data-blendmode="multiply"
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:30;"
+							><img src="assets/elemento-8.png" alt="" class="tp-rs-img" width="229" height="43" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-51" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:51px;y:907px;"
+								data-text="w:normal;"
+								data-dim="w:119px;h:105px;"
+								data-blendmode="multiply"
+								data-frame_1="st:750;sR:750;"
+								data-frame_999="o:0;st:w;sR:13700;"
+								style="z-index:29;"
+							><img src="assets/elemento-9.png" alt="" class="tp-rs-img" width="119" height="105" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-52" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:216px;y:904px;"
+								data-text="w:normal;"
+								data-dim="w:136px;h:117px;"
+								data-blendmode="multiply"
+								data-frame_1="st:900;sR:900;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								style="z-index:28;"
+							><img src="assets/elemento-10.png" alt="" class="tp-rs-img" width="136" height="117" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-53" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:402px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:181px;h:87px;"
+								data-blendmode="multiply"
+								data-frame_1="st:1050;sR:1050;"
+								data-frame_999="o:0;st:w;sR:13400;"
+								style="z-index:27;"
+							><img src="assets/elemento-11.png" alt="" class="tp-rs-img" width="181" height="87" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-54" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:630px;y:917px;"
+								data-text="w:normal;"
+								data-dim="w:175px;h:88px;"
+								data-blendmode="multiply"
+								data-frame_1="st:1200;sR:1200;"
+								data-frame_999="o:0;st:w;sR:13250;"
+								style="z-index:26;"
+							><img src="assets/elemento-12.png" alt="" class="tp-rs-img" width="175" height="88" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:12;"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-56" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:853px;y:912px;"
+								data-text="w:normal;"
+								data-dim="w:140px;h:93px;"
+								data-blendmode="multiply"
+								data-frame_1="st:1350;sR:1350;"
+								data-frame_999="o:0;st:w;sR:13100;"
+								style="z-index:25;"
+							><img src="assets/elemento-13.png" alt="" class="tp-rs-img" width="140" height="93" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-57" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:35px;y:1076px;"
+								data-text="w:normal;"
+								data-dim="w:150px;h:104px;"
+								data-blendmode="multiply"
+								data-frame_1="st:1500;sR:1500;"
+								data-frame_999="o:0;st:w;sR:12950;"
+								style="z-index:24;"
+							><img src="assets/elemento-14.png" alt="" class="tp-rs-img" width="150" height="104" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-58" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:239px;y:1082px;"
+								data-text="w:normal;"
+								data-dim="w:184px;h:90px;"
+								data-blendmode="multiply"
+								data-frame_1="st:1650;sR:1650;"
+								data-frame_999="o:0;st:w;sR:12800;"
+								style="z-index:23;"
+							><img src="assets/elemento-15.png" alt="" class="tp-rs-img" width="184" height="90" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-59" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:480px;y:1087px;"
+								data-text="w:normal;"
+								data-dim="w:232px;h:68px;"
+								data-blendmode="multiply"
+								data-frame_1="st:1800;sR:1800;"
+								data-frame_999="o:0;st:w;sR:12650;"
+								style="z-index:22;"
+							><img src="assets/elemento-16.png" alt="" class="tp-rs-img" width="232" height="68" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-60" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:767px;y:1088px;"
+								data-text="w:normal;"
+								data-dim="w:260px;h:66px;"
+								data-blendmode="multiply"
+								data-frame_1="st:1950;sR:1950;"
+								data-frame_999="o:0;st:w;sR:12500;"
+								style="z-index:21;"
+							><img src="assets/elemento-17.png" alt="" class="tp-rs-img" width="260" height="66" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-61" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:41px;y:1248px;"
+								data-text="w:normal;"
+								data-dim="w:151px;h:75px;"
+								data-blendmode="multiply"
+								data-frame_1="st:2090;sR:2090;"
+								data-frame_999="o:0;st:w;sR:12360;"
+								style="z-index:20;"
+							><img src="assets/elemento-18.png" alt="" class="tp-rs-img" width="151" height="75" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-62" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:227px;y:1249px;"
+								data-text="w:normal;"
+								data-dim="w:108px;h:75px;"
+								data-blendmode="multiply"
+								data-frame_1="st:2250;sR:2250;"
+								data-frame_999="o:0;st:w;sR:12200;"
+								style="z-index:19;"
+							><img src="assets/elemento-19.png" alt="" class="tp-rs-img" width="108" height="75" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-63" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:369px;y:1248px;"
+								data-text="w:normal;"
+								data-dim="w:121px;h:76px;"
+								data-blendmode="multiply"
+								data-frame_1="st:2390;sR:2390;"
+								data-frame_999="o:0;st:w;sR:12060;"
+								style="z-index:18;"
+							><img src="assets/elemento-20.png" alt="" class="tp-rs-img" width="121" height="76" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-64" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:523px;y:1236px;"
+								data-text="w:normal;"
+								data-dim="w:136px;h:100px;"
+								data-blendmode="multiply"
+								data-frame_1="st:2550;sR:2550;"
+								data-frame_999="o:0;st:w;sR:11900;"
+								style="z-index:17;"
+							><img src="assets/elemento-21.png" alt="" class="tp-rs-img" width="136" height="100" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-65" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:695px;y:1243px;"
+								data-text="w:normal;"
+								data-dim="w:204px;h:81px;"
+								data-blendmode="multiply"
+								data-frame_1="st:2680;sR:2680;"
+								data-frame_999="o:0;st:w;sR:11770;"
+								style="z-index:16;"
+							><img src="assets/elemento-22.png" alt="" class="tp-rs-img" width="204" height="81" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2339-layer-66" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:43px;y:1389px;"
+								data-text="w:normal;"
+								data-dim="w:183px;h:67px;"
+								data-frame_1="st:2680;sR:2680;"
+								data-frame_999="o:0;st:w;sR:11770;"
+								style="z-index:15;"
+							><img src="assets/elemento-23.png" alt="" class="tp-rs-img" width="183" height="67" data-no-retina> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2340" data-title="Historia" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2340-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:693px;y:1277px;"
+								data-text="w:normal;"
+								data-dim="w:437px;h:656px;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:11;"
+							><img src="assets/maquina-escabadora.png" alt="" class="tp-rs-img" width="1000" height="1500" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:490px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:14;"
+							><img src="assets/historia.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2338;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:15;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:420px;y:1231px;"
+								data-text="w:normal;"
+								data-dim="w:668px;h:603px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:150px;y:b;yo:-93px;"
+								data-text="w:normal;"
+								data-dim="w:793px;h:601px;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/nuestra-historia.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:13;"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-72" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:175px;y:769px;"
+								data-text="w:normal;s:18;"
+								data-dim="w:764.0312px;"
+								data-frame_0="sX:0.9;sY:0.9;"
+								data-frame_1="st:1700;sp:1000;sR:1700;"
+								data-frame_999="o:0;st:w;sR:12050;"
+								style="z-index:16;font-family:'Roboto';"
+							>Hidroper nació en 1.985, en la provincia de Catamarca, por iniciativa de Miguel Angel Castro, geólogo joven y entusiasta, comprometido y dedicado con su profesión, quien en aquella época soñaba con aplicar y transferir sus conocimientos para el crecimiento y desarrollo de su provincia natal, detectando así una oportunidad. Así inició este camino, con trabajos de estudios, dirección técnica de obras y asesoramiento hidrológico a empresas del sector agrícola. En 1987 se firmaron acuerdos de alianza estratégica con importantes empresas de perforaciones para diseñar y dirigir obras de envergadura en el plan productivo de la región. Seis años después, en 1993, se incorporó la primera máquina perforadora de origen ruso con gran poder de acción. En 1998, se constituyó HIDROPER como una Sociedad de Responsabilidad Limitada, de esta manera nos expandimos y diversificamos la capacidad productiva con la creación de un área específica de estudios geoeléctricos e hidrológicos dotados con sus propios equipos especiales para realizar las tareas.<br />
+Con un constante avance y crecimiento, en 2005 incorporamos máquinas perforadoras de última tecnología y profesionales especializados en geología y negocios. Asimismo, en 2008 creamos el área de Ingeniería para el diseño y desarrollo de proyectos complejos. Actualmente en HIDROPER seguimos creciendo y nos renovamos con la misma pasión y compromiso que aportamos la segunda generación de la familia, dando continuidad a los valores que fueron los pilares desde su fundación y que hoy en día constituyen la base del éxito y reconocimiento de HIDROPER SRL.<br />
+ 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2340-layer-73" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:472px;y:1452px;"
+								data-text="w:normal;"
+								data-dim="w:437px;h:478px;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:12;"
+							><img src="assets/higiene-y-seg-hombre-de-rojo.png" alt="" class="tp-rs-img" width="1177" height="1288" data-no-retina> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2341" data-title="Productos" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2341-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:468px;y:1401px;"
+								data-text="w:normal;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:11;"
+							><img src="assets/productos-bombas-y-PLC.png" alt="" class="tp-rs-img" width="705" height="607" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:399px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:111px;"
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:15;"
+							><img src="assets/Productos-celeste.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:16;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:240px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:12;"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-67" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;xo:-6px;y:581px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:900;sR:900;"
+								data-frame_999="o:0;st:w;sR:13550;"
+								style="z-index:14;"
+							><img src="assets/sistemas-de-bombeo.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-68" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:199px;y:1128px;"
+								data-text="w:normal;"
+								data-dim="w:715px;h:183px;"
+								data-frame_1="st:1360;sR:1360;"
+								data-frame_999="o:0;st:w;sR:13090;"
+								style="z-index:17;"
+							><img src="assets/logos-2.png" alt="" class="tp-rs-img" width="715" height="183" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-69" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:1030px;"
+								data-text="w:normal;"
+								data-dim="w:367px;h:70px;"
+								data-frame_1="st:1200;sR:1200;"
+								data-frame_999="o:0;st:w;sR:13250;"
+								style="z-index:13;"
+							><img src="assets/Insumos-Electricos-y-Sistemas-de-Automatizacion-1-1.png" alt="" class="tp-rs-img" width="582" height="111" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-70" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:130px;y:685px;"
+								data-text="w:normal;"
+								data-dim="w:824px;h:215px;"
+								data-frame_1="st:1060;sR:1060;"
+								data-frame_999="o:0;st:w;sR:13390;"
+								style="z-index:18;"
+							><img src="assets/logos-1-copia.png" alt="" class="tp-rs-img" width="824" height="215" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2341-layer-71" 
+								data-type="text"
+								data-color="#0c0c0c"
+								data-rsp_ch="on"
+								data-xy="x:271px;y:524px;"
+								data-text="w:normal;s:16;fw:700;"
+								data-frame_1="st:1500;"
+								data-frame_999="o:0;st:w;"
+								style="z-index:19;font-family:'Verdana', 'Geneva', 'sans-serif';"
+							>Representante oficial en Catamarca de todas estas marcas 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2342" data-title="Contacto" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/Fondo-1.jpg" alt="" title="Fondo" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2342-layer-0" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:514px;y:1488px;"
+								data-text="w:normal;"
+								data-dim="w:548px;h:445px;"
+								data-frame_1="st:990;sp:700;sR:990;"
+								data-frame_999="o:0;st:w;sR:13060;"
+								style="z-index:11;"
+							><img src="assets/CONTACTOS-elemento-1.png" alt="" class="tp-rs-img" width="595" height="483" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-1" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:399px;"
+								data-text="w:normal;"
+								data-dim="w:581px;h:111px;"
+								data-frame_1="st:600;sR:600;"
+								data-frame_999="o:0;st:w;sR:13850;"
+								style="z-index:13;"
+							><img src="assets/CONTACTOS-elemento-10.png" alt="" class="tp-rs-img" width="880" height="168" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1717px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:14;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-Curvas-.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:240px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:12;"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-70" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:213px;y:613px;"
+								data-text="w:normal;"
+								data-dim="w:582px;h:61px;"
+								data-frame_1="st:1060;sR:1060;"
+								data-frame_999="o:0;st:w;sR:13390;"
+								style="z-index:18;"
+							><img src="assets/CONTACTOS-elemento-4.png" alt="" class="tp-rs-img" width="582" height="61" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-79" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:213px;y:720px;"
+								data-text="w:normal;"
+								data-dim="w:552px;h:61px;"
+								data-frame_1="st:1360;sR:1360;"
+								data-frame_999="o:0;st:w;sR:13090;"
+								style="z-index:17;"
+							><img src="assets/CONTACTOS-elemento-5.png" alt="" class="tp-rs-img" width="552" height="61" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-81" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:213px;y:832px;"
+								data-text="w:normal;"
+								data-dim="w:652px;h:214px;"
+								data-frame_1="st:1660;sR:1660;"
+								data-frame_999="o:0;st:w;sR:12790;"
+								style="z-index:16;"
+							><img src="assets/CONTACTOS-elemento-6-1.png" alt="" class="tp-rs-img" width="652" height="214" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-82" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:213px;y:1042px;"
+								data-text="w:normal;"
+								data-dim="w:439px;h:69px;"
+								data-frame_1="st:1960;sR:1960;"
+								data-frame_999="o:0;st:w;sR:12490;"
+								style="z-index:15;"
+							><img src="assets/CONTACTOS-elemento-7.png" alt="" class="tp-rs-img" width="439" height="69" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2342-layer-83" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:1234px;"
+								data-text="w:normal;"
+								data-dim="w:239px;h:239px;"
+								data-frame_0="rY:360deg;"
+								data-frame_1="e:back.out;st:2260;sp:500;"
+								data-frame_999="o:0;st:w;sR:12190;"
+								style="z-index:20;"
+							><img src="assets/CONTACTOS-elemento-8.png" alt="" class="tp-rs-img" width="239" height="239" data-no-retina> 
+							</rs-layer><!--
+-->						</rs-slide>
+						<rs-slide style="position: absolute;" data-key="rs-2320" data-title="(1) video" data-duration="14750" data-anim="ms:600;" data-in="o:0;" data-out="a:false;">
+							<img src="assets/c29a1c33-baa7-4f51-a92e-d9dab7a91a50_2320.jpeg" alt="" title="c29a1c33-baa7-4f51-a92e-d9dab7a91a50_2320.jpeg" width="480" height="848" class="rev-slidebg tp-rs-img" data-no-retina>
+							<rs-bgvideo 
+								data-video="w:100%;h:100%;sta:7;nse:false;l:true;ptimer:false;vfc:true;"
+								data-mp4="assets/c29a1c33-baa7-4f51-a92e-d9dab7a91a50.mp4"
+							></rs-bgvideo>
+<!--
+							--><rs-layer
+								id="slider-86-slide-2320-layer-8" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1787px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:12;"
+							><img src="assets/volver.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2320-layer-10" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:c;yo:-711px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:636px;h:87px;"
+								data-frame_0="y:200%;sX:2;sY:2;o:1;rX:-20deg;rY:-20deg;"
+								data-frame_1="e:power3.out;st:1690;sp:1200;sR:1690;"
+								data-frame_999="o:0;st:w;sR:11860;"
+								data-loop_999="sX:1.1;sY:1.1;sp:10000;yym:t;yys:t;yyf:t;"
+								style="z-index:10;"
+							><img src="assets/Logotipo-Hidroper-blanco.png" alt="" class="tp-rs-img" width="519" height="71" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2320-layer-18" 
+								data-type="text"
+								data-color="#fff"
+								data-rsp_ch="on"
+								data-xy="x:521px;y:1657px;"
+								data-text="w:normal;s:40;l:50;fw:900;a:right;"
+								data-dim="w:502px;minh:0px;"
+								data-frame_0="o:1;"
+								data-frame_0_chars="d:5;y:-100%;o:0;rZ:35deg;"
+								data-frame_0_mask="u:t;"
+								data-frame_1="sp:1200;"
+								data-frame_1_chars="e:power4.inOut;d:10;rZ:0deg;"
+								data-frame_1_mask="u:t;"
+								data-frame_999="o:0;st:w;"
+								style="z-index:15;font-family:'Roboto';text-transform:uppercase;"
+							>Maniobras para construccion en pozo de exploracion 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2320-layer-21" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:240px;y:916px;"
+								data-text="w:normal;"
+								data-dim="w:848px;h:765px;"
+								data-frame_0="x:50;"
+								data-frame_1="st:790;sp:1000;sR:790;"
+								data-frame_999="o:0;st:w;sR:12960;"
+								style="z-index:9;"
+							><img src="assets/arco-fondo-1.png" alt="" class="tp-rs-img" width="727" height="656" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2320-layer-22" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:c;y:b;"
+								data-text="w:normal;"
+								data-dim="w:100%;"
+								data-frame_0="y:50;"
+								data-frame_1="sp:1000;"
+								data-frame_999="o:0;st:w;sR:13750;"
+								style="z-index:8;"
+							><img src="assets/Capa-11.png" alt="" class="tp-rs-img" width="768" height="582" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2320-layer-55" 
+								class="rs-layer-audio rs-layer-hidden"
+								data-type="audio"
+								data-rsp_ch="on"
+								data-xy="x:50px;y:50px;"
+								data-text="w:normal;"
+								data-dim="w:54;h:54;"
+								data-video="w:54;h:54;p:auto;nse:false;l:false;vd:100;ptimer:false;"
+								data-mp4="assets/Click-Sound.mp3"
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:11;"
+							> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2320-layer-86" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1615px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:14;"
+							><img src="assets/siguiente.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-86-slide-2320-layer-87" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="x:72px;y:1699px;"
+								data-text="w:normal;"
+								data-dim="w:280px;h:80px;"
+								data-actions='o:click;a:jumptoslide;slide:rs-2317;'
+								data-frame_999="o:0;st:w;sR:14450;"
+								style="z-index:13;"
+							><img src="assets/anterior.png" alt="" class="tp-rs-img" width="280" height="80" data-no-retina> 
+							</rs-layer><!--
+-->						</rs-slide>
+					</rs-slides>
+					<rs-static-layers><!--
+					--></rs-static-layers>
+				</rs-module>
+				<script>
+					
+				</script>
+<script>
+		if(typeof revslider_showDoubleJqueryError === "undefined") {function revslider_showDoubleJqueryError(sliderID) {console.log("You have some jquery.js library include that comes after the Slider Revolution files js inclusion.");console.log("To fix this, you can:");console.log("1. Set 'Module General Options' -> 'Advanced' -> 'jQuery & OutPut Filters' -> 'Put JS to Body' to on");console.log("2. Find the double jQuery.js inclusion and remove it");return "Double Included jQuery Library";}}
+</script>
+			</rs-module-wrap>
+			<!-- END REVOLUTION SLIDER -->
+
+				<script>
+					var	tpj = jQuery;
+					if(window.RS_MODULES === undefined) window.RS_MODULES = {};
+					if(RS_MODULES.modules === undefined) RS_MODULES.modules = {};
+					RS_MODULES.modules["revslider861"] = {once: RS_MODULES.modules["revslider861"]!==undefined ? RS_MODULES.modules["revslider861"].once : undefined, init:function() {
+						window.revapi86 = window.revapi86===undefined || window.revapi86===null || window.revapi86.length===0  ? document.getElementById("rev_slider_86_1") : window.revapi86;
+						if(window.revapi86 === null || window.revapi86 === undefined || window.revapi86.length==0) { window.revapi86initTry = window.revapi86initTry ===undefined ? 0 : window.revapi86initTry+1; if (window.revapi86initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider861"].init()}); return;}
+						window.revapi86 = jQuery(window.revapi86);
+						if(window.revapi86.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_86_1"); return;}
+						revapi86.revolutionInit({
+								revapi:"revapi86",
+								DPR:"dpr",
+								sliderLayout:"fullscreen",
+								visibilityLevels:"1240,1024,778,480",
+								gridwidth:1080,
+								gridheight:1920,
+								spinner:"spinner0",
+								perspective:600,
+								perspectiveType:"local",
+								editorheight:"1920,768,960,720",
+								responsiveLevels:"1240,1024,778,480",
+								stopAtSlide:1,
+								stopAfterLoops:0,
+								stopLoop:true,
+								progressBar:{disableProgressBar:true},
+								navigation: {
+									onHoverStop:false
+								},
+								viewPort: {
+									global:false,
+									globalDist:"-200px",
+									enable:false
+								},
+								fallbacks: {
+									allowHTML5AutoPlayOnAndroid:true
+								},
+						});
+						
+					}} // End of RevInitScript
+					if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal();};
+				</script>
+
+
+
+		</body>
+				</html>
+		

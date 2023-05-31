@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartActivity">
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_centerInParent="true"
+        android:textSize="24sp"
+        android:layout_above="@id/iniciar"
+        android:hint="Ingresa tu rubro o emprendimiento" />
+
+    <Button
+        android:id="@+id/iniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Iniciar"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/cardenas_imagen"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>
