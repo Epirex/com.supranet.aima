@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val clearButton: ImageButton = findViewById(R.id.clearButton)
+        val homeButton: ImageButton =findViewById(R.id.homeButton)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
@@ -115,6 +116,13 @@ class MainActivity : AppCompatActivity() {
         // boton de limpieza
         clearButton.setOnClickListener {
             clearChat()
+        }
+
+        // Boton home
+        homeButton.setOnClickListener{
+            val intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // Mantener pantalla siempre encendida
@@ -354,8 +362,6 @@ class MainActivity : AppCompatActivity() {
             messageHistory.clear()
             addMessageToChatView(messageIntial, Gravity.START)
             dialog.dismiss()
-            val intent = Intent(this, StartActivity::class.java)
-            startActivity(intent)
         }
         alertDialogBuilder.create().show()
     }

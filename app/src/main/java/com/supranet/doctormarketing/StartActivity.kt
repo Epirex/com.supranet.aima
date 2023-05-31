@@ -51,6 +51,7 @@ class StartActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("storedInformation", inputText)
                 startActivity(intent)
+                finish()
                 true
             } else {
                 false
