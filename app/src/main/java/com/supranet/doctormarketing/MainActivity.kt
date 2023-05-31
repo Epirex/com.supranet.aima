@@ -85,9 +85,13 @@ class MainActivity : AppCompatActivity() {
         messageEditText.setOnKeyListener{ _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN) {
                 when (keyCode) {
-                    KeyEvent.KEYCODE_F5 -> {
+                    KeyEvent.KEYCODE_F6 -> {
                         clearChat()
                         messageEditText.requestFocus()
+                        true
+                    }
+                    KeyEvent.KEYCODE_F5 -> {
+                        backTohome()
                         true
                     }
                     KeyEvent.KEYCODE_DPAD_UP -> {
@@ -357,6 +361,7 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
             val intent = Intent(this, StartActivity::class.java)
             startActivity(intent)
+            finish()
         }
         alertDialogBuilder.setNegativeButton("Cancelar") { dialog, _ ->
             chatLinearLayout.removeAllViews()
@@ -418,5 +423,10 @@ class MainActivity : AppCompatActivity() {
             chatScrollView.fullScroll(View.FOCUS_DOWN)
             messageEditText.requestFocus()
         }, 100)
+    }
+    private fun backTohome() {
+        val intent = Intent(this, StartActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
