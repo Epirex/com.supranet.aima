@@ -277,14 +277,15 @@ class MainActivity : AppCompatActivity() {
 
                 val session = Session.getInstance(properties, object : javax.mail.Authenticator() {
                     override fun getPasswordAuthentication(): javax.mail.PasswordAuthentication {
-                        return javax.mail.PasswordAuthentication("supranet.logos@gmail.com", "npmtportarqirmyk")
+                        return javax.mail.PasswordAuthentication("minceit.aima@gmail.com", "ninhenpgvlmeklfs")
                     }
                 })
 
                 val message = MimeMessage(session)
-                message.setFrom(InternetAddress("supranet.logos@gmail.com"))
+                message.setFrom(InternetAddress("minceit.aima@gmail.com"))
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
-                message.subject = "Supranet: ¡Esta fue tu conversacion con AIMA!"
+                message.subject = "\n" +
+                        "Ministerio de Ciencia e Innovación Tecnologica: ¡Esta fue tu conversacion con AIMA!"
                 message.sentDate = Date()
 
                 // No me pregunten que es esto, lo saque de stackoverflow y me permitio enviar mails
