@@ -364,9 +364,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
         alertDialogBuilder.setNegativeButton("Cancelar") { dialog, _ ->
-            chatLinearLayout.removeAllViews()
-            messageHistory.clear()
-            addMessageToChatView(messageIntial, Gravity.START)
             dialog.dismiss()
         }
         alertDialogBuilder.create().show()

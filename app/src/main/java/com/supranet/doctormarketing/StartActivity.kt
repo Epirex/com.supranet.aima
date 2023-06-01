@@ -3,11 +3,9 @@ package com.supranet.doctormarketing
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -70,6 +68,7 @@ class StartActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("storedInformation", inputText)
             startActivity(intent)
+            finish()
         }
         botonRefresh.setOnClickListener {
             webView.reload()
