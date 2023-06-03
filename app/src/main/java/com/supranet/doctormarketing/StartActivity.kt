@@ -60,8 +60,8 @@ class StartActivity : AppCompatActivity() {
         // Mantener pantalla siempre encendida
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        //webView.loadUrl("file:///android_asset/index.html")
-        webView.loadUrl("http://www.poster.com.ar/aima")
+        webView.loadUrl("file:///android_asset/index.html")
+        //webView.loadUrl("http://www.poster.com.ar/aima")
 
         botonIniciar.setOnClickListener {
             val inputText = editText.text.toString()
