@@ -9,8 +9,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@drawable/encabezado2"
+        android:layout_height="200dp"
+        android:background="@drawable/encabezado"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize" >
 
@@ -20,8 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
-            android:src="@drawable/file_download_black_48dp" />
+            android:padding="1dp"
+            android:src="@drawable/file_download_black_48dp"
+            android:visibility="invisible"/>
 
         <ImageButton
             android:id="@+id/homeButton"
@@ -29,8 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
-            android:src="@drawable/home_black_48dp" />
+            android:padding="1dp"
+            android:src="@drawable/home_black_48dp"
+            android:visibility="invisible"/>
 
         </androidx.appcompat.widget.Toolbar>
 

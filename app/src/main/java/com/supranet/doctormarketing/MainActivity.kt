@@ -233,7 +233,7 @@ class MainActivity : AppCompatActivity() {
 
         val textView = TextView(this)
         textView.text = message
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f)
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
         textView.setBackgroundResource(R.drawable.chat_bubble)
         textView.setPadding(32, 16, 32, 16)
         textView.layoutParams = layoutParams
