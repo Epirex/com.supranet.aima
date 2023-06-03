@@ -301,11 +301,18 @@ class MainActivity : AppCompatActivity() {
                 mc.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822")
                 CommandMap.setDefaultCommandMap(mc)
 
+                val multipartImage = MimeMultipart()
+                val htmlContent = "<html><img src=\"https://raw.githubusercontent.com/Epirex/turismo/main/logoministerio.png\"><br></body></html>"
+                val htmlBodyPart = MimeBodyPart()
+                htmlBodyPart.setContent(htmlContent, "text/html")
+                multipartImage.addBodyPart(htmlBodyPart)
+
                 val textPart = MimeBodyPart().apply {
                     setText(conversation)
                 }
 
                 val multipart = MimeMultipart().apply {
+                    addBodyPart(htmlBodyPart)
                     addBodyPart(textPart)
                 }
                 message.setContent(multipart)
