@@ -3,9 +3,7 @@ package com.supranet.doctormarketing
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.WindowManager
-import android.view.inputmethod.EditorInfo
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -36,26 +34,6 @@ class StartActivity : AppCompatActivity() {
         webView.webViewClient = WebViewClient()
         val settings: WebSettings = webView.settings
         settings.javaScriptEnabled = true
-
-        // Configurar teclado fisico
-        editText.requestFocus()
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-
-        editText.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEND ||
-                (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
-            ) {
-                val inputText = editText.text.toString()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("storedInformation", inputText)
-                startActivity(intent)
-                finish()
-                true
-            } else {
-                false
-            }
-        }
-
 
         // Mantener pantalla siempre encendida
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)

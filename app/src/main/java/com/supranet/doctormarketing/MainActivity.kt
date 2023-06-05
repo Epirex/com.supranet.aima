@@ -8,10 +8,8 @@ import android.text.InputType
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
-import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -60,52 +58,6 @@ class MainActivity : AppCompatActivity() {
         val homeButton: ImageButton =findViewById(R.id.homeButton)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        // Configurar teclado fisico
-        messageEditText.requestFocus()
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-
-        messageEditText.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEND ||
-                (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
-            ) {
-                val message = messageEditText.text.toString()
-                if (message.isNotEmpty()) {
-                    sendMessageToChatGPT(message)
-                    messageEditText.text.clear()
-                    hideKeyboard()
-                    messageEditText.requestFocus()
-                }
-                true
-            } else {
-                false
-            }
-        }
-
-        messageEditText.setOnKeyListener{ _, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN) {
-                when (keyCode) {
-                    KeyEvent.KEYCODE_F6 -> {
-                        clearChat()
-                        messageEditText.requestFocus()
-                        true
-                    }
-                    KeyEvent.KEYCODE_F5 -> {
-                        backTohome()
-                        true
-                    }
-                    KeyEvent.KEYCODE_DPAD_UP -> {
-                        scrollChatUp()
-                        true
-                    }
-                    KeyEvent.KEYCODE_DPAD_DOWN -> {
-                        scrollChatDown()
-                        true
-                    }
-                }
-            }
-            false
-        }
 
         // boton de enviar
         sendButton.setOnClickListener {
@@ -210,14 +162,12 @@ class MainActivity : AppCompatActivity() {
                                 addMessageToChatView("$reply", Gravity.START)
                                 chatScrollView.post {
                                     scrollChat()
-                                    messageEditText.requestFocus()
                                 }
                             }
                         }
                     } else {
                         runOnUiThread {
                             addMessageToChatView("Error: Ups! vuelve a intentarlo.", Gravity.START)
-                            messageEditText.requestFocus()
                         }
                     }
                 }
@@ -410,27 +360,9 @@ class MainActivity : AppCompatActivity() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(messageEditText.windowToken, 0)
     }
-    private fun scrollChatUp() {
-        chatScrollView.post {
-            val scrollAmount = 200 // Cantidad de desplazamiento en píxeles
-            chatScrollView.scrollBy(0, -scrollAmount)
-        }
-    }
-    private fun scrollChatDown() {
-        chatScrollView.post {
-            val scrollAmount = 200 // Cantidad de desplazamiento en píxeles
-            chatScrollView.scrollBy(0, scrollAmount)
-        }
-    }
     private fun scrollChat() {
         chatScrollView.postDelayed({
             chatScrollView.fullScroll(View.FOCUS_DOWN)
-            messageEditText.requestFocus()
         }, 100)
-    }
-    private fun backTohome() {
-        val intent = Intent(this, StartActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }
