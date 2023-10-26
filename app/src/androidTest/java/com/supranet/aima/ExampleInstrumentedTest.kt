@@ -1,4 +1,4 @@
-package com.supranet.doctormarketing
+package com.supranet.aima
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.supranet.doctormarketing", appContext.packageName)
+        assertEquals("com.supranet.aima", appContext.packageName)
     }
 }

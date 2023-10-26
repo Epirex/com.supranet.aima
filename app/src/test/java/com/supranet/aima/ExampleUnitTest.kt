@@ -1,4 +1,4 @@
-package com.supranet.doctormarketing
+package com.supranet.aima
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.supranet.doctormarketing
+package com.supranet.aima
 
 import android.content.Context
 import android.content.Intent

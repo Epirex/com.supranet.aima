@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.supranet.doctormarketing'
+    namespace 'com.supranet.aima'
     compileSdk 33
 
     packagingOptions {
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.supranet.doctormarketing"
+        applicationId "com.supranet.aima"
         minSdk 24
         targetSdk 33
         versionCode 1
