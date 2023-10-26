@@ -3,6 +3,8 @@ package com.supranet.aima
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.view.WindowManager
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -37,6 +39,19 @@ class StartActivity : AppCompatActivity() {
 
         // Mantener pantalla siempre encendida
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        // Oculta el botón al principio
+        botonIniciar.visibility = View.INVISIBLE
+        editText.visibility = View.INVISIBLE
+
+        // Crea un objeto Handler
+        val handler = Handler()
+
+        // Usa postDelayed para mostrar el botón después de 10 segundos (10000 milisegundos)
+        handler.postDelayed({
+            botonIniciar.visibility = View.VISIBLE
+            editText.visibility = View.VISIBLE
+        }, 6000)
 
         webView.loadUrl("file:///android_asset/index.html")
         //webView.loadUrl("http://www.poster.com.ar/aima")
