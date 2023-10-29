@@ -29,12 +29,4 @@
         android:text="Iniciar"
         android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/refresh"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:background="@drawable/cardenas_imagen"
-        android:textSize="24sp" />
-
-
 </RelativeLayout>
