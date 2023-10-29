@@ -18,6 +18,8 @@
         android:layout_centerInParent="true"
         android:textSize="24sp"
         android:layout_above="@id/iniciar"
+        android:textColor="#474747"
+        android:textColorHint="#474747"
         android:hint="Ingresa tu rubro o emprendimiento" />
 
     <Button
