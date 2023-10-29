@@ -14,7 +14,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 
 			<!-- LOAD JQUERY LIBRARY -->
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 			
 			<!-- LOADING FONTS AND ICONS -->
 			<link href="https://fonts.googleapis.com/css?family=Roboto:400&display=swap" rel="stylesheet" property="stylesheet" media="all" type="text/css" >
@@ -32,7 +32,7 @@
 			window.RS_MODULES = window.RS_MODULES || {};
 			window.RS_MODULES.modules = window.RS_MODULES.modules || {};
 			window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
-			window.RS_MODULES.defered = false;
+			window.RS_MODULES.defered = true;
 			window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
 			window.RS_MODULES.type = 'compiled';
 		</script>
@@ -46,7 +46,7 @@
 				try {
 					var pw = document.getElementById(e.c).parentNode.offsetWidth,
 						newh;
-					pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
+					pw = pw===0 || isNaN(pw) || (e.l=="fullwidth" || e.layout=="fullwidth") ? window.RSIW : pw;
 					e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
 					e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
 					e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
@@ -92,22 +92,38 @@
 			
 		</head>
 		
-		<body  style="margin: 0px;">
+		<body style="margin: 0px;">
 		
 
-			<!-- START aima REVOLUTION SLIDER 6.5.17 --><p class="rs-p-wp-fix"></p>
-			<rs-module-wrap id="rev_slider_95_1_wrapper" data-alias="aima" data-source="gallery" style="visibility:hidden;background:transparent;padding:0;">
-				<rs-module id="rev_slider_95_1" style="" data-version="6.5.17">
-					<rs-slides>
-						<rs-slide style="position: absolute;" data-key="rs-2421" data-title="Slide" data-in="o:0;" data-out="a:false;">
-							<img src="assets/papel-arrugado-copia.png" alt="" title="papel-arrugado copia" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
+			<!-- START aima REVOLUTION SLIDER 6.6.12 --><p class="rs-p-wp-fix"></p>
+			<rs-module-wrap id="rev_slider_6_1_wrapper" data-alias="aima" data-source="gallery" style="visibility:hidden;background:transparent;padding:0;">
+				<rs-module id="rev_slider_6_1" style="" data-version="6.6.12">
+					<rs-slides style="overflow: hidden; position: absolute;">
+						<rs-slide style="position: absolute;" data-key="rs-6" data-title="Slide" data-in="o:0;" data-out="a:false;">
+							<img src="assets/papel-arrugado-copia.png" alt="" title="papel-arrugado-copia.png" width="1080" height="1920" class="rev-slidebg tp-rs-img" data-bg="f:contain;" data-no-retina>
 <!--
 							--><rs-layer
-								id="slider-95-slide-2421-layer-4" 
+								id="slider-6-slide-6-layer-0" 
 								data-type="image"
 								data-rsp_ch="on"
-								data-text="w:normal;"
-								data-dim="w:1080px;h:1920px;"
+								data-xy="xo:1px,1px,1px,-94px;yo:1580px,1580px,1580px,-98px;"
+								data-text="w:normal;s:20,20,20,12;l:0,0,0,15;"
+								data-dim="w:1082px,1082px,1082px,907px;h:351px,351px,351px,294px;"
+								data-btrans="rZ:180;"
+								data-frame_0="y:100%;"
+								data-frame_1="e:power4.inOut;sp:1000;"
+								data-frame_999="o:0;st:w;sR:6710;"
+								style="z-index:9;"
+							><img src="assets/Capa-2.png" alt="" class="tp-rs-img" width="1080" height="350" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-6-slide-6-layer-4" 
+								data-type="image"
+								data-rsp_ch="on"
+								data-xy="yo:0,0,0,185px;"
+								data-text="w:normal;s:20,20,20,12;l:0,0,0,15;"
+								data-dim="w:1080px,1080px,1080px,720px;h:1920px,1920px,1920px,1278px;"
 								data-frame_0="sX:0.9;sY:0.9;"
 								data-frame_1="sp:1000;"
 								data-frame_999="o:0;st:w;sR:8000;"
@@ -116,13 +132,13 @@
 							</rs-layer><!--
 
 							--><rs-layer
-								id="slider-95-slide-2421-layer-6" 
+								id="slider-6-slide-6-layer-6" 
 								data-type="image"
 								data-rsp_ch="on"
-								data-xy="x:32px;y:1126px;"
-								data-text="w:normal;"
-								data-dim="w:749px;h:1403px;"
-								data-frame_0="y:50;"
+								data-xy="xo:32px,32px,32px,21px;yo:1126px,1126px,1126px,874px;"
+								data-text="w:normal;s:20,20,20,12;l:0,0,0,15;"
+								data-dim="w:749px,749px,749px,498px;h:1403px,1403px,1403px,934px;"
+								data-frame_0="y:50,50,50,32;"
 								data-frame_1="st:3020;sp:1000;sR:3020;"
 								data-frame_999="o:0;st:w;sR:4980;"
 								style="z-index:18;"
@@ -130,54 +146,26 @@
 							</rs-layer><!--
 
 							--><rs-layer
-								id="slider-95-slide-2421-layer-7" 
+								id="slider-6-slide-6-layer-9" 
 								data-type="image"
 								data-rsp_ch="on"
-								data-xy="x:-6px;y:-19px;"
-								data-text="w:normal;"
-								data-dim="w:146px;h:1112px;"
-								data-frame_0="x:-50;"
-								data-frame_1="st:2860;sp:1000;sR:2860;"
-								data-frame_999="o:0;st:w;sR:5140;"
-								style="z-index:10;"
-							><img src="assets/manacha-1.png" alt="" class="tp-rs-img" width="146" height="1112" data-no-retina> 
-							</rs-layer><!--
-
-							--><rs-layer
-								id="slider-95-slide-2421-layer-9" 
-								data-type="image"
-								data-rsp_ch="on"
-								data-xy="x:236px;y:178px;"
-								data-text="w:normal;"
-								data-dim="w:606px;h:104px;"
+								data-xy="xo:236px,236px,236px,166px;yo:178px,178px,178px,392px;"
+								data-text="w:normal;s:20,20,20,12;l:0,0,0,15;"
+								data-dim="w:606px,606px,606px,403px;h:104px,104px,104px,68px;"
 								data-frame_0="sX:0.9;sY:0.9;"
-								data-frame_1="x:-2px;y:16px;st:250;sp:1590;sR:250;"
+								data-frame_1="x:-2px,-2px,-2px,0px;y:16px,16px,16px,10px;st:250;sp:1590;sR:250;"
 								data-frame_999="o:0;st:w;sR:7160;"
 								style="z-index:12;"
 							><img src="assets/AIMA-1.png" alt="" class="tp-rs-img" width="606" height="104" data-no-retina> 
 							</rs-layer><!--
 
 							--><rs-layer
-								id="slider-95-slide-2421-layer-13" 
+								id="slider-6-slide-6-layer-21" 
 								data-type="image"
 								data-rsp_ch="on"
-								data-xy="x:938px;y:-12px;"
-								data-text="w:normal;"
-								data-dim="w:144px;h:1092px;"
-								data-frame_0="x:50;"
-								data-frame_1="st:2860;sp:1000;sR:2860;"
-								data-frame_999="o:0;st:w;sR:5140;"
-								style="z-index:11;"
-							><img src="assets/manacha-2.png" alt="" class="tp-rs-img" width="144" height="1092" data-no-retina> 
-							</rs-layer><!--
-
-							--><rs-layer
-								id="slider-95-slide-2421-layer-21" 
-								data-type="image"
-								data-rsp_ch="on"
-								data-xy="x:54px;y:1790px;"
-								data-text="w:normal;"
-								data-dim="w:245px;h:55px;"
+								data-xy="xo:54px,54px,54px,-24px;yo:1790px,1790px,1790px,1512px;"
+								data-text="w:normal;s:20,20,20,12;l:0,0,0,15;"
+								data-dim="w:245px,245px,245px,227px;h:55px,55px,55px,51px;"
 								data-frame_0="rY:360deg;"
 								data-frame_1="e:back.out;st:2140;sp:1000;sR:2140;"
 								data-frame_999="o:0;st:w;sR:5860;"
@@ -186,12 +174,12 @@
 							</rs-layer><!--
 
 							--><rs-layer
-								id="slider-95-slide-2421-layer-22" 
+								id="slider-6-slide-6-layer-22" 
 								data-type="image"
 								data-rsp_ch="on"
-								data-xy="x:784px;y:1750px;"
-								data-text="w:normal;"
-								data-dim="w:180px;h:130px;"
+								data-xy="xo:784px,784px,784px,277px;yo:1750px,1750px,1750px,35px;"
+								data-text="w:normal;s:20,20,20,12;l:0,0,0,15;"
+								data-dim="w:180px,180px,180px,170px;h:130px,130px,130px,123px;"
 								data-frame_0="rY:360deg;"
 								data-frame_1="e:back.out;st:2440;sp:1000;sR:2440;"
 								data-frame_999="o:0;st:w;sR:5560;"
@@ -200,12 +188,13 @@
 							</rs-layer><!--
 
 							--><rs-layer
-								id="slider-95-slide-2421-layer-24" 
+								id="slider-6-slide-6-layer-24" 
 								data-type="text"
 								data-color="#474747"
 								data-rsp_ch="on"
-								data-xy="x:295px;y:353px;"
-								data-text="w:normal;s:27;l:37;"
+								data-xy="xo:295px,295px,295px,235px;yo:353px,353px,353px,495px;"
+								data-text="w:normal;s:27,27,27,16;l:37,37,37,24;"
+								data-dim="minh:0,0,0,none;"
 								data-frame_0="o:1;"
 								data-frame_0_chars="d:5;y:100%;o:0;rZ:-35deg;"
 								data-frame_0_mask="u:t;"
@@ -218,15 +207,15 @@
 							</rs-layer><!--
 
 							--><rs-layer
-								id="slider-95-slide-2421-layer-29" 
+								id="slider-6-slide-6-layer-29" 
 								data-type="image"
 								data-rsp_ch="on"
-								data-xy="x:1px;y:1580px;"
-								data-text="w:normal;"
-								data-dim="w:1082px;h:351px;"
+								data-xy="xo:1px,1px,1px,-93px;yo:1580px,1580px,1580px,1370px;"
+								data-text="w:normal;s:20,20,20,12;l:0,0,0,15;"
+								data-dim="w:1082px,1082px,1082px,907px;h:351px,351px,351px,294px;"
 								data-frame_0="y:100%;"
-								data-frame_1="e:power4.inOut;st:180;sp:2290;sR:180;"
-								data-frame_999="o:0;st:w;sR:6230;"
+								data-frame_1="e:power4.inOut;sp:1000;"
+								data-frame_999="o:0;st:w;sR:6710;"
 								style="z-index:9;"
 							><img src="assets/Capa-2.png" alt="" class="tp-rs-img" width="1080" height="350" data-no-retina> 
 							</rs-layer><!--
@@ -248,23 +237,23 @@
 					var	tpj = jQuery;
 					if(window.RS_MODULES === undefined) window.RS_MODULES = {};
 					if(RS_MODULES.modules === undefined) RS_MODULES.modules = {};
-					RS_MODULES.modules["revslider951"] = {once: RS_MODULES.modules["revslider951"]!==undefined ? RS_MODULES.modules["revslider951"].once : undefined, init:function() {
-						window.revapi95 = window.revapi95===undefined || window.revapi95===null || window.revapi95.length===0  ? document.getElementById("rev_slider_95_1") : window.revapi95;
-						if(window.revapi95 === null || window.revapi95 === undefined || window.revapi95.length==0) { window.revapi95initTry = window.revapi95initTry ===undefined ? 0 : window.revapi95initTry+1; if (window.revapi95initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider951"].init()}); return;}
-						window.revapi95 = jQuery(window.revapi95);
-						if(window.revapi95.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_95_1"); return;}
-						revapi95.revolutionInit({
-								revapi:"revapi95",
+					RS_MODULES.modules["revslider61"] = {once: RS_MODULES.modules["revslider61"]!==undefined ? RS_MODULES.modules["revslider61"].once : undefined, init:function() {
+						window.revapi6 = window.revapi6===undefined || window.revapi6===null || window.revapi6.length===0  ? document.getElementById("rev_slider_6_1") : window.revapi6;
+						if(window.revapi6 === null || window.revapi6 === undefined || window.revapi6.length==0) { window.revapi6initTry = window.revapi6initTry ===undefined ? 0 : window.revapi6initTry+1; if (window.revapi6initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider61"].init()}); return;}
+						window.revapi6 = jQuery(window.revapi6);
+						if(window.revapi6.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_6_1"); return;}
+						revapi6.revolutionInit({
+								revapi:"revapi6",
 								DPR:"dpr",
 								sliderLayout:"fullscreen",
-								visibilityLevels:"1240,1024,778,480",
-								gridwidth:1080,
-								gridheight:1920,
+								visibilityLevels:"1240,1240,1240,480",
+								gridwidth:"1080,1080,1080,720",
+								gridheight:"1920,1920,1920,1600",
 								spinner:"spinner2",
 								perspective:600,
 								perspectiveType:"local",
-								editorheight:"1920,768,960,720",
-								responsiveLevels:"1240,1024,778,480",
+								editorheight:"1920,768,1383,1600",
+								responsiveLevels:"1240,1240,1240,480",
 								progressBar:{disableProgressBar:true},
 								navigation: {
 									onHoverStop:false
@@ -285,7 +274,8 @@
 
 
 
-<style>#rev_slider_95_1_wrapper rs-loader.spinner2{background-color:#ffffff !important}</style>
+<style>#rev_slider_6_1_wrapper rs-loader.spinner2{background-color:#ffffff !important}</style>
+<script type="text/javascript">window.RVS = window.RVS || {}; window.RVS.ENV = window.RVS.ENV || {}; window.RVS.ENV.TRANSITIONPACK_URL = "http://localhost/wordpress/wp-content/plugins/revslider-transitionpack-addon/";</script>
 		</body>
 				</html>
 		
